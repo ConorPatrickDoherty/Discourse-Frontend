@@ -1,3 +1,20 @@
-<div class="form">
-    <p>Works</p>
+<div class="login-container">
+  <fa-icon [icon]="logo"></fa-icon>
+  <h1>Welcome Back</h1>
+  <span>Enter your details to sign in</span>
+  <form [formGroup]="credentials" (ngSubmit)="onSignIn()" class="form-container">
+    <mat-form-field color="accent" appearance="fill" class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input class="input-override" type="email" matInput formControlName="email">
+    </mat-form-field>
+  
+    <mat-form-field color="accent" appearance="fill" class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input class="input-override" type="password" matInput formControlName="password">
+    </mat-form-field>
+
+    <button type="submit" class="form-button" mat-flat-button color="accent">Sign In</button>
+    <span>No account? <a class="create-link" [routerLink]="['../register']">Create one here</a></span>
+  </form>
 </div>
+
