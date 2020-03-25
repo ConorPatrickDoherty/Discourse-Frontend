@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-authentication',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private store: Store<any>, private auth: AuthenticationService) {
+    this.store.pipe(select('auth')).subscribe(
+      user => {
+        if (user) this.router.navigate([''])
+      }
+    )
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
   }
 
 }

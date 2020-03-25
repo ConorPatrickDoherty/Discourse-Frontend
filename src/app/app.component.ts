@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
