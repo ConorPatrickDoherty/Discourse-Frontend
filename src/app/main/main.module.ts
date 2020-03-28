@@ -5,23 +5,27 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ArticleListComponent } from './news-feed/article-list/article-list.component';
-import { ArticleItemComponent } from './news-feed/article-item/article-item.component';
-import { NewsFeedComponent } from './news-feed/news-feed/news-feed.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
-    MainComponent,
-    ArticleListComponent,
-    ArticleItemComponent,
-    NewsFeedComponent
+    MainComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatInputModule,
+    FontAwesomeModule
   ]
 })
 export class MainModule { }

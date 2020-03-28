@@ -11,7 +11,6 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NewsFeedComponent,
         loadChildren: () => import('./news-feed/news-feed.module').then(m => m.NewsFeedModule)
       }
     ]

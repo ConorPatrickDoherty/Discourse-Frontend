@@ -1,6 +1,20 @@
 <mat-toolbar color="background">
-
-
+    <div class="category-select">
+        <button class="w-100" mat-stroked-button [matMenuTriggerFor]="category">Category</button>
+        <mat-menu #category class="w-100">
+            <button  mat-menu-item>Item 1</button>
+            <button  mat-menu-item>Item 2</button>
+        </mat-menu>
+    </div>
+    <div class="search-bar">
+        <mat-form-field color="accent" appearance="fill" class="w-100">
+            <mat-label>Search</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+    <div class="user-profile">
+        <fa-icon [icon]="user"></fa-icon>
+    </div>
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav-content>

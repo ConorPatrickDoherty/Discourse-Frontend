@@ -1,8 +1,30 @@
+$toolbar-height: 70px;
+
 mat-toolbar {
-    height: 56px;
+    height: $toolbar-height;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    display: flex;
+    align-items: center;   
+    justify-content: space-evenly;
+
+    .category-select {
+        font-size: 22px;
+        flex-basis: 20%;
+    }
+
+    .search-bar {
+        font-size: 14px;
+        height: 50px;
+        flex-basis: 65%;
+    }
+
+    .user-profile {
+        flex-basis: 5%;
+        margin: 0 20px;
+    }
 }
 
 mat-sidenav-container {
-    height: 100%;
+    height: Calc(100% - #{$toolbar-height});
 }

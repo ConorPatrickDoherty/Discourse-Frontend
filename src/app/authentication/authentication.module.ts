@@ -7,7 +7,6 @@ import { authReducer } from '../state/authentication/auth.reducer';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthenticationComponent } from './authentication/authentication.component';

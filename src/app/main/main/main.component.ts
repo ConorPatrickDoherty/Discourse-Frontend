@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main',
@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  user:IconDefinition = faUser
 
   constructor() { }
 
