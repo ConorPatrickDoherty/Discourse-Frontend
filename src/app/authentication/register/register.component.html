@@ -1,0 +1,25 @@
+<div class="register-container">
+    <h1>Create Account</h1>
+    <span class="heading">Just the essentials</span>
+    <form [formGroup]="credentials" (ngSubmit)="onCreateUser()" class="form-container">
+        <mat-form-field color="accent" appearance="fill" class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input class="input-override" type="text" matInput >
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="fill" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input class="input-override" type="email" matInput formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="fill" class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input class="input-override" type="password" matInput formControlName="password">
+        </mat-form-field>
+  
+        <button type="submit" class="form-button" mat-flat-button color="accent">Sign Up</button>
+        <span>Have an account? <a class="create-link" [routerLink]="['../login']">Sign in</a></span>
+    </form>
+  </div>
+  
+  

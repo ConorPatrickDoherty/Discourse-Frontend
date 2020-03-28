@@ -1,0 +1,52 @@
+.login-container {
+    height: 100%;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+
+    fa-icon {
+        font-size: 5vh;
+        align-self: center;
+        width: fit-content;
+        margin-bottom: 4%;
+    }
+
+    h1 {
+        font-weight: 200;
+        
+        margin: 0;
+        color: #69f0ae;
+        align-self: center;
+    }
+
+    span {
+        align-self: center;
+    }
+    
+    .form-container {
+        height: 40%;
+        width: 100%;
+        margin-top: 20%;
+        display: flex;
+        align-self: flex-end;
+        flex-direction: column;
+        align-content: flex-end;
+        justify-content: space-evenly;
+
+        .input-override {
+            background-color: transparent !important;
+        }
+
+        .form-button {
+            font-size: 18px;
+        }
+
+        span {
+            margin-top: 20px;
+
+            .create-link {
+                color: #69f0ae;
+            }
+        }
+    }
+}

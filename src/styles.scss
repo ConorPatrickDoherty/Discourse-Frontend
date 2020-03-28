@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/purple-green.css';
+@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@include media-breakpoint-up(sm) {
+    h1 {
+        font-size: 36px;
+    }
+  }
+  
+  @include media-breakpoint-up(md) {
+    h1 {
+        font-size: 36px;
+    }
+  }
+  
+  @include media-breakpoint-up(lg) {
+    h1 {
+        font-size: 42px;
+    }
+  }
+
+  /* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
