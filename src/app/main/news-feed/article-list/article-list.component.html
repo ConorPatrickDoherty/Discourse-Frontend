@@ -7,5 +7,8 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <span>0 Results</span>
+    <span>{{ArticlesList?.totalResults}} Results</span>
+</div>
+<div class="articles-container">
+    <app-article-item *ngFor="let article of ArticlesList?.articles" [Article]="article"></app-article-item>
 </div>

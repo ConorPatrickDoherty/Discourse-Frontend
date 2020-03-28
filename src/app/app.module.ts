@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +20,7 @@ import { MainComponent } from './main/main/main.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     AngularFireModule.initializeApp(environment.firebase),
@@ -26,7 +28,8 @@ import { MainComponent } from './main/main/main.component';
     AppRoutingModule
   ],
   providers: [
-    AngularFireAuth
+    AngularFireAuth,
+    HttpClientModule
   ],
   bootstrap: [
     AppComponent

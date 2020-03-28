@@ -1,0 +1,51 @@
+$image-dimensions: 140px;
+
+.article-item-container {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 20px;
+    
+    .article-content {
+        display: flex;
+
+        .image-wrap {
+            
+            height: $image-dimensions;
+            min-width: $image-dimensions;
+            border-radius: 10px;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            
+
+            .fill-wrap {
+                margin-left: 50%;
+                position: absolute;
+                transform: translateX(-50%);
+                filter: blur(8px);
+
+                .image-fill {
+                    height: $image-dimensions;
+                    overflow: hidden;
+                }
+            }
+            
+            
+            .image-main {
+                width: $image-dimensions;
+                z-index: 1;
+            }
+        }
+
+        .markup {
+
+            .content {
+                font-size: 14px;
+            }
+        }
+    }
+    
+}
