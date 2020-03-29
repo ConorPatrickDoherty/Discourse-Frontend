@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +7,9 @@ import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  logo:IconDefinition = faFeatherAlt
   user:IconDefinition = faUser
+  dropdown:IconDefinition = faChevronDown
 
   constructor() { }
 

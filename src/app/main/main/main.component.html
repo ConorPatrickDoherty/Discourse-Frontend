@@ -1,19 +1,27 @@
 <mat-toolbar color="background">
+    <div class="title">
+        <fa-icon [icon]="logo"></fa-icon>
+        <h1>Discourse</h1>
+    </div>
     <div class="category-select">
-        <button class="w-100" mat-stroked-button [matMenuTriggerFor]="category">Category</button>
-        <mat-menu #category class="w-100">
-            <button  mat-menu-item>Item 1</button>
-            <button  mat-menu-item>Item 2</button>
+        <button class="category-button" mat-raised-button [matMenuTriggerFor]="category">
+            <span>Category</span><fa-icon [icon]="dropdown"></fa-icon>
+        </button>
+        <mat-menu #category>
+            <button class="menu-item"  mat-menu-item>Item 1</button>
+            <button class="menu-item"  mat-menu-item>Item 2</button>
         </mat-menu>
     </div>
     <div class="search-bar">
-        <mat-form-field color="accent" appearance="fill" class="w-100">
+        <mat-form-field color="accent" appearance="outline" class="w-100" floatLabel="never" >
             <mat-label>Search</mat-label>
             <input matInput>
         </mat-form-field>
     </div>
     <div class="user-profile">
-        <fa-icon [icon]="user"></fa-icon>
+        <button mat-icon-button>
+            <fa-icon [icon]="user"></fa-icon>
+        </button>
     </div>
 </mat-toolbar>
 <mat-sidenav-container>
