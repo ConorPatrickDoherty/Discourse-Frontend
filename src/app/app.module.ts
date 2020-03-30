@@ -3,16 +3,26 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthenticationComponent } from './authentication/authentication/authentication.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MatCardModule } from '@angular/material/card';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { StoreModule } from '@ngrx/store';
-import { MainComponent } from './main/main/main.component';
+import { StoreModule,  ActionReducer, MetaReducer } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { newsFeedReducer } from './state/news-feed/news-feed.reducer'
+import { routeReducer } from './state/router/router.reducer'
+ 
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['todos']})(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+ 
+
 
 @NgModule({
   declarations: [
@@ -25,7 +35,16 @@ import { MainComponent } from './main/main/main.component';
     StoreModule.forRoot({}),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({
+      newsFeedQuery: newsFeedReducer,
+      routeReducer
+    }),
+    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, 
+      logOnly: environment.production
+    })
   ],
   providers: [
     AngularFireAuth,

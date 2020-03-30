@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { NewsFeedRoutingModule } from './news-feed-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-
+import { newsFeedReducer } from '../../state/news-feed/news-feed.reducer'
 
 import { MatSelectModule } from '@angular/material/select';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleItemComponent } from './article-item/article-item.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { TrendingComponent } from './trending/trending.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [

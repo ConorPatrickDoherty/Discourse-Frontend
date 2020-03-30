@@ -5,7 +5,7 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':category',
     component: NewsFeedComponent
   }
 ];
