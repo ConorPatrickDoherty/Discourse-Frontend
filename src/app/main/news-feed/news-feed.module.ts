@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NewsFeedRoutingModule } from './news-feed-routing.module';
+import { routeReducer } from '../../state/router/router.reducer'
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { newsFeedReducer } from '../../state/news-feed/news-feed.reducer'
 
 import { MatSelectModule } from '@angular/material/select';
 import { ArticleListComponent } from './article-list/article-list.component';
@@ -23,6 +24,10 @@ import { StoreModule } from '@ngrx/store';
   imports: [
     CommonModule,
     NewsFeedRoutingModule,
+    StoreModule.forFeature(
+      'NewsFeed', 
+      { routeReducer }
+    ),
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule

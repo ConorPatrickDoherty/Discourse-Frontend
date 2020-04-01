@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { NewsFeedComponent } from './news-feed/news-feed/news-feed.component';
+import { MainGuard } from './main.guard';
 
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'newsfeed/en',
+    pathMatch: 'full'
+  },
+  {
+    path: 'newsfeed/:language',
     component: MainComponent,
+    canActivate: [MainGuard],
     children: [
       {
         path: '',

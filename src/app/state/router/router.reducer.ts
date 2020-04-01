@@ -1,26 +1,21 @@
 import { createReducer, on, createAction } from '@ngrx/store'
 import { ROUTER_NAVIGATED, RouterRequestAction } from '@ngrx/router-store'
+import { State } from '../../interfaces/redux/state/category'
+import { RouterAction } from './router.action'
 
-// TODO MUST CLEAN UP ALL CODE
-// CREATE SEPERATE TS FILES FOR ALL INTERFACES + ACTION
-// DECIDE WHERE TO PUT INITIAL STATE
-// MOVE THIS REDUCER INTO FEATURE MODULE USING STOREMODULE.FORFEATURE()
-
-const RouterAction = createAction(ROUTER_NAVIGATED)
+// MUST CLEAN UP ALL CODE
+// TODO DECIDE WHERE TO PUT INITIAL STATE
 
 const initialState = {
-    category: ''
-}
-
-interface State {
-    category: ''
+    category: '',
+    language: ''
 }
 
 export const routeReducer = createReducer(
     initialState,
     on(RouterAction, (state: State, action: RouterRequestAction) => ({
         ...state,
-        category: action.payload.event.url.slice(1).toLowerCase(),
-
+        language: action.payload.event.url.split('/')[2],
+        category: action.payload.event.url.split('/')[3]
     }))
 )

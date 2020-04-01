@@ -7,8 +7,8 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <span>{{ArticlesList?.totalResults}} Results</span>
+    <span >{{ArticlesResponse?.totalResults}} Results</span>
 </div>
-<div class="articles-container">
-    <app-article-item *ngFor="let article of ArticlesList?.articles" [Article]="article"></app-article-item>
+<div class="articles-container" *ngIf="!news.loading">
+    <app-article-item  *ngFor="let article of ArticlesResponse?.articles" [Article]="article"></app-article-item>
 </div>

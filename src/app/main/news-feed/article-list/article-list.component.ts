@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsApiService } from 'src/app/services/news-api.service';
 import { NewsApiResponse } from 'src/app/interfaces/news-api-response';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
@@ -8,13 +9,20 @@ import { NewsApiResponse } from 'src/app/interfaces/news-api-response';
   styleUrls: ['./article-list.component.scss']
 })
 export class ArticleListComponent implements OnInit {
-  ArticlesList:NewsApiResponse
+  ArticlesResponse:NewsApiResponse;
 
-  constructor(private news: NewsApiService) { 
-    this.news.getMainQuery().subscribe(a => this.ArticlesList = a);
+  constructor(private news: NewsApiService) {
+    this.news.Articles.subscribe(s => {
+      this.ArticlesResponse = s
+      console.log(s)
+    })
   }
 
   ngOnInit() {
 
+  }
+
+  ngAfterViewInit() {
+    
   }
 }

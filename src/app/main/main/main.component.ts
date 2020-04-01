@@ -3,6 +3,7 @@ import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesom
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CATEGORIES } from '../../../assets/api-settings'
 
 @Component({
   selector: 'app-main',
@@ -13,31 +14,14 @@ export class MainComponent implements OnInit {
   logo:IconDefinition = faFeatherAlt
   user:IconDefinition = faUser
   dropdown:IconDefinition = faChevronDown
-  categories:string[] = [
-    'General',
-    'Business',
-    'Entertainment',
-    'Health',
-    'Science',
-    'Sports',
-    'Technology'
-  ]
+  categories:string[] = CATEGORIES
   selectedCategory: Observable<string>
 
-  constructor(private store: Store<{routeReducer: any}>, private router: Router ) {
-    this.selectedCategory = this.store.pipe(select('routeReducer'))
+  constructor(private store: Store<{NewsFeed: any}>, private router: Router ) {
+    this.selectedCategory = this.store.select('NewsFeed').pipe(select('routeReducer'))
   }
-
-  ChangeCategory(category: string) {
-    this.router.navigate[category]
-    console.log(category);
-    this.store.dispatch({
-      type: 'CATEGORY_CHANGE',
-      payload: category
-    })
-  }
-
 
   ngOnInit() {
+    
   }
 }
