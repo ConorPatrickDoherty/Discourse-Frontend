@@ -1,7 +1,6 @@
 $image-dimensions: 140px;
 
 .article-item-container {
-    height: 200px;
     width: 100%;
     margin-bottom: 20px;
     
@@ -41,7 +40,7 @@ $image-dimensions: 140px;
         }
 
         .markup {
-
+            height: fit-content;
             .content {
                 font-size: 14px;
             }

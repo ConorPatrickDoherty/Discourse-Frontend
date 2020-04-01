@@ -8,7 +8,7 @@
         </div>
         <div class="markup">
             <h5>{{Article?.title}}</h5>
-            <p class="content">{{Article?.description}}</p>
+            <p class="content" [innerHTML]="Article?.content || Article?.description"></p>
         </div>
     </div>
 </mat-card> 

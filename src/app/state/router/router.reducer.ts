@@ -8,7 +8,8 @@ import { RouterAction } from './router.action'
 
 const initialState = {
     category: '',
-    language: ''
+    language: '',
+    query: ''
 }
 
 export const routeReducer = createReducer(
@@ -16,6 +17,7 @@ export const routeReducer = createReducer(
     on(RouterAction, (state: State, action: RouterRequestAction) => ({
         ...state,
         language: action.payload.event.url.split('/')[2],
-        category: action.payload.event.url.split('/')[3]
+        category: action.payload.event.url.includes('?') ? action.payload.event.url.split('/')[3].split('?')[0] : action.payload.event.url.split('/')[3],
+        query: action.payload.event.url.split('?')[1]
     }))
 )
