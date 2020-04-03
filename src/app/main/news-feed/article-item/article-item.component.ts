@@ -13,4 +13,8 @@ export class ArticleItemComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  // ViewArticle() {
+  //   console.log(this.Article.title)
+  // }
 }

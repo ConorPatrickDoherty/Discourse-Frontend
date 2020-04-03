@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { StoreModule } from '@ngrx/store'
 import { AuthenticationRoutingModule } from './authentication-routing.module';
-import { authReducer } from '../state/authentication/auth.reducer';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +22,6 @@ import { RegisterComponent } from './register/register.component';
     CommonModule,
     AuthenticationRoutingModule,
     MatFormFieldModule,
-    StoreModule.forFeature('auth', authReducer),
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,

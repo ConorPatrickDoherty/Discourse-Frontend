@@ -17,11 +17,14 @@ export class MainComponent implements OnInit {
   user:IconDefinition = faUser
   dropdown:IconDefinition = faChevronDown
   categories:string[] = CATEGORIES
-  selectedCategory: Observable<string>
+  selectedCategory: string;
   query = new FormControl('')
 
   constructor(private store: Store<{NewsFeed: any}>, private router: Router ) {
-    this.selectedCategory = this.store.select('NewsFeed').pipe(select('routeReducer'))
+    this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
+      this.selectedCategory = res.state.params.category
+      this.query.setValue(res.state.queryParams.q.split('-').join(' '))
+    })
     this.query.valueChanges
     .pipe( debounce(() => timer(500)) )
     .subscribe(query => {

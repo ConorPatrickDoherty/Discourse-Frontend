@@ -15,7 +15,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
- 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({keys: ['todos']})(reducer);
 }
@@ -36,7 +35,6 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     AngularFirestoreModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
-    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production

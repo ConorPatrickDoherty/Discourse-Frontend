@@ -14,19 +14,22 @@ export class NewsApiService {
   loading:boolean = false
 
   constructor(private http: HttpClient, private store: Store<{NewsFeed: any}>) {
-    this.store.select('NewsFeed').pipe(select("routeReducer")).subscribe(state => {
+    this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
       this.loading = true
-      let url = `${this.apiRoot}category=${state.category || "General"}&language=${state.language || 'en'}&apiKey=${NEWS_API_KEY}`
+      if (res.state.params) {
+        let url = `${this.apiRoot}category=${res.state.params.category}&language=${res.state.params.language}&apiKey=${NEWS_API_KEY}`
 
-      if (state.query && state.query !== '') url = url.concat(`&${state.query.split('-').join('+')}`)              
-
-      this.http.get<NewsApiResponse>(url).subscribe(
-        A => {
-           this.Articles.next(A)
-           return this.loading = false
-        }
-      )
-      
+        if (res.state.queryParams.q) 
+          url = url.concat(`&q=${res.state.queryParams.q.split('-').join('+')}`)              
+  
+        console.log(url)
+        this.http.get<NewsApiResponse>(url).subscribe(
+          A => {
+             this.Articles.next(A)
+             return this.loading = false
+          }
+        )
+      }
     });
   }
 }
