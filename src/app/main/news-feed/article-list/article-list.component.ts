@@ -20,8 +20,16 @@ export class ArticleListComponent implements OnInit {
   filteredOptions:Observable<CountryOption>
 
   constructor(private news: NewsApiService) {
-    this.news.Articles.subscribe(s => {
-      this.ArticlesResponse = s
+    this.news.Articles.subscribe(res => {
+      if (res) {
+        this.ArticlesResponse = {
+          ...res, 
+          //remove distinct articles where URLS matche
+          articles: res.articles.filter((v, i, s) => {
+            return i === s.findIndex((a) => (a.url === v.url))
+          })
+        }
+      }  
     })
   }
 

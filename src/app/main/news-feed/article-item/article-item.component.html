@@ -7,7 +7,7 @@
             <img class="image-main" [src]="Article.urlToImage">
         </div>
         <div class="markup">
-            <h5>{{Article?.title}}</h5>
+            <h5>{{Article?.title}}, {{Article?.source}}</h5>
             <p class="content" [innerHTML]="Article?.content || Article?.description"></p>
         </div>
     </div>
