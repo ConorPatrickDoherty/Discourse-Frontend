@@ -14,7 +14,7 @@ export class ArticleItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  // ViewArticle() {
-  //   console.log(this.Article.title)
-  // }
+  ViewArticle() {
+    console.log(this.Article.url.split('https://')[1])
+  }
 }

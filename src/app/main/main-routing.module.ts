@@ -7,17 +7,21 @@ import { MainGuard } from './main.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'newsfeed/en',
-    pathMatch: 'full'
-  },
-  {
-    path: 'newsfeed/:language',
     component: MainComponent,
     canActivate: [MainGuard],
     children: [
       {
         path: '',
+        redirectTo: 'newsfeed/en',
+        pathMatch: 'full'
+      },
+      {
+        path: 'newsfeed/:language',
         loadChildren: () => import('./news-feed/news-feed.module').then(m => m.NewsFeedModule)
+      },
+      {
+        path: 'thread/:threadId',
+        loadChildren: () => import('./thread/thread.module').then(m => m.ThreadModule)        
       }
     ]
   }

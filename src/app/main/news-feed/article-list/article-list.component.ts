@@ -24,7 +24,7 @@ export class ArticleListComponent implements OnInit {
       if (res) {
         this.ArticlesResponse = {
           ...res, 
-          //remove distinct articles where URLS matche
+          //remove duplicate articles where URLS matche
           articles: res.articles.filter((v, i, s) => {
             return i === s.findIndex((a) => (a.url === v.url))
           })

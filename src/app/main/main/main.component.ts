@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
-import { Observable, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { CATEGORIES } from '../../../assets/api-settings'
 import { FormControl } from '@angular/forms';
@@ -18,23 +18,33 @@ export class MainComponent implements OnInit {
   dropdown:IconDefinition = faChevronDown
   categories:string[] = CATEGORIES
   selectedCategory: string;
+  selectedLanguage: string;
   query = new FormControl('')
 
   constructor(private store: Store<{NewsFeed: any}>, private router: Router ) {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      this.selectedCategory = res.state.params.category
-      this.query.setValue(res.state.queryParams.q.split('-').join(' '))
+      if (res.state.params.category) 
+        this.selectedCategory = res.state.params.category;
+      else if (!this.selectedCategory)
+        this.selectedCategory = 'General'
+
+      this.selectedLanguage = res.state.params.language || 'en';
+      if (res.state.queryParams.q)
+        this.query.setValue(res.state.queryParams.q.split('-').join(' '));
     })
     this.query.valueChanges
     .pipe( debounce(() => timer(500)) )
     .subscribe(query => {
       const q = query.split(' ').join('-')
-      console.log(query)
-      query !== '' ? this.router.navigate([], { queryParams: { q } }) : this.router.navigate([])
+      query !== '' ? this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q } }) : this.router.navigate([])
     })
   }
 
   ngOnInit() {
     
+  }
+
+  ChangeCategory(category:string) {
+    this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
   }
 }
