@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ThreadRoutingModule } from './thread-routing.module';
 import { ThreadComponent } from './thread/thread.component';
 
-import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { ArticleComponent } from './article/article.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -16,6 +18,9 @@ import { ArticleComponent } from './article/article.component';
   imports: [
     CommonModule,
     ThreadRoutingModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class ThreadModule { }

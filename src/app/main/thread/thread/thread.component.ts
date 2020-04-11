@@ -14,10 +14,17 @@ export class ThreadComponent implements OnInit {
   constructor(private threads: ThreadService, private changeDetector: ChangeDetectorRef) { 
     this.threads.Article.subscribe(a => {
       this.Article = a;
+      console.log(a)
       this.changeDetector.detectChanges()
     })
   }
 
   ngOnInit() {
   }
+
+  // getAspectRatio(url) {
+  //   const image = new Image()
+  //   image.src = url;
+  //   console.log(image.width )
+  // }
 }

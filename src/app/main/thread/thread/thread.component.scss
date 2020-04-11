@@ -1,50 +1,73 @@
-$image-dimensions: 40vh;
+$image-dimensions: 30vw;
+
+mat-card {
+    margin: 10px;
+}
 
 .thread-container {
+    margin: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 100%;
 
-    .image-wrap {
-        height: $image-dimensions;
-        min-width: $image-dimensions;
-        border-radius: 10px;
-        margin-right: 20px;
-        position: relative;
-        overflow: hidden;
+    .article-container {
+        flex-basis: 30%;
+        height: 100%;
         display: flex;
-        align-items: center;
-        justify-self: center;
-        
+        flex-direction: column;
 
-        .fill-wrap {
-            margin-left: 50%;
-            transform: translateX(-50%);
-            filter: blur(8px);
-            position: absolute;
+        .image-wrap {
+            width: 100%;
 
-            .image-fill {
-                height: $image-dimensions;
-                overflow: hidden;
+            .image-main {
+                width: 100%;
             }
         }
+
+        .image-wrap-taller {
+            padding-top: 100%;
+            position: relative;
+
+            .image-main {
+                top: 50%;
+                z-index: 1;
+                transform: translateY(-50%);
+                position: absolute;
+            }
+        }
+
+        .title {
+            margin: 10px 0;
+            font-size: 26px;
+        }
+
+        .source {
+            font-weight: 300;
+            display: block;
+        }
+
+        .info-wrap {
+            font-weight: 300;
+            display: flex;
+            justify-content: space-between;
+
+            .timestamp {
+                
+            }
+        }
+
         
-        .image-main {
-            width: $image-dimensions;
-            z-index: 1;
+    } 
+    
+    .comment-container {
+        flex-basis: 60%;
+        height: 100%;
+        display: flex;
+        
+        mat-card {
+            width: 100%;
         }
     }
+
 }
 
-.article-container {
-    flex-basis: 30%;
-    height: 100%;
-    display: flex;
-} 
-
-.comment-container {
-    flex-basis: 60%;
-    height: 100%;
-    display: flex;
-}

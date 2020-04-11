@@ -12,7 +12,6 @@ export class ThreadService {
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
-      this.loading = true
       if (res.state.params.threadId) {
         this.Article = this.functions.httpsCallable('ViewThread')({ threadId: res.state.params.threadId })
       }
