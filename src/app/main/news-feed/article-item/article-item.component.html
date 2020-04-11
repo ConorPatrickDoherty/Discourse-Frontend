@@ -1,4 +1,4 @@
-<mat-card class="article-item-container" routerLink="../../../thread/1">
+<mat-card class="article-item-container" (click)="ViewArticle()">
     <div class="article-content">
         <div class="image-wrap" *ngIf="Article && Article.urlToImage">
             <div class="fill-wrap">

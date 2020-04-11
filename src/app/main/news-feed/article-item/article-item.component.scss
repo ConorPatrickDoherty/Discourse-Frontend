@@ -9,7 +9,6 @@ $image-dimensions: 140px;
         display: flex;
 
         .image-wrap {
-            
             height: $image-dimensions;
             min-width: $image-dimensions;
             border-radius: 10px;
@@ -23,16 +22,15 @@ $image-dimensions: 140px;
 
             .fill-wrap {
                 margin-left: 50%;
-                position: absolute;
                 transform: translateX(-50%);
                 filter: blur(8px);
+                position: absolute;
 
                 .image-fill {
                     height: $image-dimensions;
                     overflow: hidden;
                 }
             }
-            
             
             .image-main {
                 width: $image-dimensions;
@@ -42,10 +40,10 @@ $image-dimensions: 140px;
 
         .markup {
             height: fit-content;
+
             .content {
                 font-size: 14px;
             }
         }
     }
-    
 }

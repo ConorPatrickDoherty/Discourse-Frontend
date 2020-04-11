@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ThreadRoutingModule } from './thread-routing.module';
 import { ThreadComponent } from './thread/thread.component';
 
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,7 @@ import { ThreadComponent } from './thread/thread.component';
   ],
   imports: [
     CommonModule,
-    ThreadRoutingModule
+    ThreadRoutingModule,
   ]
 })
 export class ThreadModule { }

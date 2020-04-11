@@ -1,0 +1,50 @@
+$image-dimensions: 40vh;
+
+.thread-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+
+    .image-wrap {
+        height: $image-dimensions;
+        min-width: $image-dimensions;
+        border-radius: 10px;
+        margin-right: 20px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        
+
+        .fill-wrap {
+            margin-left: 50%;
+            transform: translateX(-50%);
+            filter: blur(8px);
+            position: absolute;
+
+            .image-fill {
+                height: $image-dimensions;
+                overflow: hidden;
+            }
+        }
+        
+        .image-main {
+            width: $image-dimensions;
+            z-index: 1;
+        }
+    }
+}
+
+.article-container {
+    flex-basis: 30%;
+    height: 100%;
+    display: flex;
+} 
+
+.comment-container {
+    flex-basis: 60%;
+    height: 100%;
+    display: flex;
+}

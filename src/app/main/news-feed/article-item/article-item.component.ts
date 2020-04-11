@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/interfaces/article';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-item',
@@ -9,12 +10,12 @@ import { Article } from 'src/app/interfaces/article';
 export class ArticleItemComponent implements OnInit {
   @Input() Article: Article;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   ViewArticle() {
-    console.log(this.Article.url.split('https://')[1])
+    this.router.navigate([`thread/${this.Article.url.split('://')[1].split('/').join('-')}`])
   }
 }
