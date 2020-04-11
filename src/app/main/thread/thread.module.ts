@@ -5,11 +5,13 @@ import { ThreadRoutingModule } from './thread-routing.module';
 import { ThreadComponent } from './thread/thread.component';
 
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+import { ArticleComponent } from './article/article.component';
 
 
 @NgModule({
   declarations: [
-    ThreadComponent
+    ThreadComponent,
+    ArticleComponent
   ],
   imports: [
     CommonModule,

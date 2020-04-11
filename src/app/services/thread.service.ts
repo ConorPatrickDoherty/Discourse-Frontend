@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class ThreadService {
   Article:Observable<Article>;
-  loading: Boolean = false
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {

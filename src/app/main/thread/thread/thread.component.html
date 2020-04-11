@@ -1,5 +1,5 @@
-<div class="thread-container">
-    <div class="article-container" *ngIf="Article && Article.url">
+<div class="thread-container" *ngIf="Article">
+    <div class="article-container" >
         <div class="image-wrap">
             <div class="fill-wrap">
                 <img class="image-fill" [src]="Article?.urlToImage">
