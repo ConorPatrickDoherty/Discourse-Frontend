@@ -19,7 +19,7 @@ export class ArticleListComponent implements OnInit {
   countries:CountryOption[] = COUNTRY_CODES
   filteredOptions:Observable<CountryOption>
 
-  constructor(private news: NewsApiService) {
+  constructor(public news: NewsApiService) {
     this.news.Articles.subscribe(res => {
       if (res) {
         this.ArticlesResponse = {
