@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ThreadService {
-  Article:Observable<Article> = new Observable();
+  Article:Observable<Article>
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').subscribe(res => {
@@ -28,25 +28,3 @@ export class ThreadService {
   _ViewThread =  this.functions.httpsCallable('ViewThread')
   _CreateThread = this.functions.httpsCallable('CreateThread')
 }
-
-
-// constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) { 
-//   this.sub = []
-//   console.log('begin')
-//   this.sub.push(
-//     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
-//       console.log(res)
-//       if (res.state.params) {
-//         this.sub.push(
-//           this.functions.httpsCallable('ViewThread')({ threadId: res.state.params.threadId }).subscribe(res => {
-//             console.log(res)
-//           })
-//         )
-//       }
-//     })
-//   )
-// }
-
-// dispose() {
-//   this.sub.forEach(s => s.unsubscribe())
-// }

@@ -1,1 +1,12 @@
-<p>article works!</p>
+<mat-card>
+    <div class="image-wrap">
+        <img class="image-main" [src]="Article?.urlToImage">
+    </div>
+    <h1 class="title">{{Article.title}}</h1>
+    <span class="source">{{Article.author}}, {{Article.source.name}}</span>
+    <div class="info-wrap">
+        <span class="timestamp">{{ Article.publishedAt.split('T')[0] }}</span>
+        <span>Upvote section</span>
+    </div>
+    <p>{{Article.content}}</p>
+</mat-card>
