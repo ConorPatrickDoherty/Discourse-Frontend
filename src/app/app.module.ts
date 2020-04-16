@@ -10,18 +10,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { StoreModule,  ActionReducer, MetaReducer } from '@ngrx/store';
+import { StoreModule} from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { localStorageSync } from 'ngrx-store-localstorage';
-
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+import { authReducers, metaReducers } from './store';
 
-export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['todos']})(reducer);
-}
-const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
- 
+
 
 
 @NgModule({
@@ -37,7 +31,10 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(
+      authReducers,
+      { metaReducers }
+    ),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production
