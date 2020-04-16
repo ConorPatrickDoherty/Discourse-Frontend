@@ -5,6 +5,7 @@ import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
 import { Credentials } from '../interfaces/credentials';
 import { Router } from '@angular/router';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -12,38 +13,34 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   isSignedIn: Observable<boolean>
 
-  constructor(private auth: AngularFireAuth, private store: Store<any>, private router: Router) { 
-    // this.auth.onAuthStateChanged((user) => {
-    //   if (!user) {
-    //     this.store.dispatch({
-    //       type: 'SIGN_IN',
-    //       payload: null
-    //     })
-    //   }
-    // })
+  constructor(private auth: AngularFireAuth, private store: Store<any>, private router: Router, private functions: AngularFireFunctions,) { 
+    
   }
-
-  SignedInUser = (): Promise<User> => this.auth.currentUser
 
   SignIn = (credentials:Credentials) => 
     this.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-    .then((credential) => {
-      this.store.dispatch({
-        type: 'SIGN_IN',
-        payload: {
-          uid: credential.user.uid,
-          email: credential.user.email,
-          displayName: credential.user.displayName,
-          photoURL: credential.user.photoURL
-        } 
+    .then(() => {
+      this._GetUser({email: credentials.email}).subscribe((user) => {
+        console.log(user)
+         this.store.dispatch({
+          type: 'SignIn',
+          payload: user
+        })
+        this.router.navigate([''])
       })
-      this.router.navigate([''])
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log(error.message)
     })
 
   SignOut =():Promise<void> => this.auth.signOut() 
 
-  SignUp = (credentials:Credentials): Promise<firebase.auth.UserCredential> => this.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+  SignUp = (credentials:Credentials) => {
+    this._CreateUser({credentials}).subscribe(x => {
+      console.log(x)
+    })
+  }
+
+  private _CreateUser = this.functions.httpsCallable('CreateUser');
+  private _GetUser = this.functions.httpsCallable('GetUser');
 }

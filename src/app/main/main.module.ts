@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store'
-import { reducers, CustomSerializer } from '../store'
+import { newsReducers, CustomSerializer } from '../store'
 import { StoreModule } from '@ngrx/store';
 
 import { MainRoutingModule } from './main-routing.module';
@@ -29,7 +29,7 @@ import { ClickElsewhereDirective } from '../directives/click-elsewhere.directive
     MainRoutingModule,
     StoreModule.forFeature(
       'NewsFeed', 
-      reducers
+      newsReducers
     ),
     StoreRouterConnectingModule.forRoot(),
     ReactiveFormsModule,
