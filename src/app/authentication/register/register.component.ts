@@ -18,13 +18,13 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.credentials = this.formBuilder.group({
+      username: '',
       email: '',
       password: ''
     });
   }
 
   onCreateUser = async () => {
-    await this.auth.SignUp(this.credentials.value)
-    await this.auth.SignIn(this.credentials.value)
+    this.auth.SignUp(this.credentials.value)
   }
 }

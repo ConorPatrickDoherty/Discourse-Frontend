@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import { timer } from 'rxjs';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CATEGORIES } from '../../../assets/api-settings'
 import { FormControl } from '@angular/forms';
 import { debounce } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-main',
@@ -13,15 +14,16 @@ import { debounce } from 'rxjs/operators';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  logo:IconDefinition = faFeatherAlt
-  user:IconDefinition = faUser
-  dropdown:IconDefinition = faChevronDown
-  categories:string[] = CATEGORIES
+  logo:IconDefinition = faFeatherAlt;
+  user:IconDefinition = faUser;
+  dropdown:IconDefinition = faChevronDown;
+  categories:string[] = CATEGORIES;
   selectedCategory: string;
   selectedLanguage: string;
-  query = new FormControl('')
+  query = new FormControl('');
+  showingProfile:boolean = false;
 
-  constructor(private store: Store<{NewsFeed: any}>, private router: Router ) {
+  constructor(private store: Store<{NewsFeed: any}>, private router: Router, private auth: AuthenticationService ) {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
       if (res.state.params.category) 
         this.selectedCategory = res.state.params.category;
@@ -44,7 +46,15 @@ export class MainComponent implements OnInit {
     
   }
 
-  ChangeCategory(category:string) {
-    this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
+  ChangeCategory = (category:string) => this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
+
+  ShowProfile = () => {
+      this.showingProfile = true
   }
+
+  HideProfile = () => {
+    this.showingProfile = false
+  }
+
+  SignOut = () => this.auth.SignOut()
 }

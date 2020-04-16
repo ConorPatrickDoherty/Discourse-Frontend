@@ -17,10 +17,16 @@
             <input matInput [formControl]="query">
         </mat-form-field>
     </div>
-    <div class="user-profile">
-        <button mat-icon-button>
+    <div class="user-profile" appClickElsewhere (clickElsewhere)="HideProfile()">
+        <button class="user-icon" mat-icon-button (click)="ShowProfile()">
             <fa-icon [icon]="user"></fa-icon>
         </button>
+        <mat-card class="profile" *ngIf="showingProfile">
+            <button mat-menu-item (click)="SignOut()">Sign Out</button>
+        </mat-card>
+        <!-- <mat-menu #profile>
+            <button mat-menu-item (click)="SignOut()">Sign Out</button>
+        </mat-menu> -->
     </div>
 </mat-toolbar>
 <mat-sidenav-container>

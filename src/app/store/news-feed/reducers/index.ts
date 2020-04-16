@@ -7,7 +7,7 @@ import { articleReducer } from './article-reducer';
 import { RouterStateUrl } from '../interfaces/router-state-url';
 import { State } from '../interfaces/state';
 
-export const reducers: ActionReducerMap<State> = {
+export const newsReducers: ActionReducerMap<State> = {
     routerReducer: fromRouter.routerReducer,
     articleReducer: articleReducer
 } 

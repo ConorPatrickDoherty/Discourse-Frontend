@@ -4,7 +4,7 @@
     <form [formGroup]="credentials" (ngSubmit)="onCreateUser()" class="form-container">
         <mat-form-field color="accent" appearance="fill" class="example-full-width">
             <mat-label>Username</mat-label>
-            <input class="input-override" type="text" matInput >
+            <input class="input-override" type="text" matInput formControlName="username">
         </mat-form-field>
 
         <mat-form-field color="accent" appearance="fill" class="example-full-width">

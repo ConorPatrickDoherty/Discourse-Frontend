@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store'
-import { reducers, CustomSerializer } from '../store'
+import { newsReducers, CustomSerializer } from '../store'
 import { StoreModule } from '@ngrx/store';
 
 import { MainRoutingModule } from './main-routing.module';
@@ -15,19 +15,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ThreadComponent } from './thread/thread/thread.component';
+import { MatCardModule } from '@angular/material/card';
+import { ClickElsewhereDirective } from '../directives/click-elsewhere.directive';
 
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    ClickElsewhereDirective
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     StoreModule.forFeature(
       'NewsFeed', 
-      reducers
+      newsReducers
     ),
     StoreRouterConnectingModule.forRoot(),
     ReactiveFormsModule,
@@ -35,12 +37,16 @@ import { ThreadComponent } from './thread/thread/thread.component';
     MatSidenavModule,
     MatFormFieldModule,
     MatMenuModule,
+    MatCardModule,
     MatButtonModule,
     MatInputModule,
     FontAwesomeModule
   ],
   providers: [
-    {provide: RouterStateSerializer, useClass: CustomSerializer}
+    {
+      provide: RouterStateSerializer, 
+      useClass: CustomSerializer
+    }
   ]
 })
 export class MainModule { }
