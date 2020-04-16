@@ -1,0 +1,49 @@
+$image-dimensions: 140px;
+
+.article-item-container {
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
+    .article-content {
+        display: flex;
+
+        .image-wrap {
+            height: $image-dimensions;
+            min-width: $image-dimensions;
+            border-radius: 10px;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            
+
+            .fill-wrap {
+                margin-left: 50%;
+                transform: translateX(-50%);
+                filter: blur(8px);
+                position: absolute;
+
+                .image-fill {
+                    height: $image-dimensions;
+                    overflow: hidden;
+                }
+            }
+            
+            .image-main {
+                width: $image-dimensions;
+                z-index: 1;
+            }
+        }
+
+        .markup {
+            height: fit-content;
+
+            .content {
+                font-size: 14px;
+            }
+        }
+    }
+}

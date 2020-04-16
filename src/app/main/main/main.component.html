@@ -1,1 +1,30 @@
-<p>main works!</p>
+<mat-toolbar color="background">
+    <div class="title">
+        <fa-icon [icon]="logo"></fa-icon>
+        <h1>Discourse</h1>
+    </div>
+    <div class="category-select">
+        <button class="category-button" mat-raised-button [matMenuTriggerFor]="category">
+            <span>{{selectedCategory}}</span><fa-icon [icon]="dropdown"></fa-icon>
+        </button>
+        <mat-menu #category> 
+            <button class="menu-item" mat-menu-item *ngFor="let category of categories" (click)="ChangeCategory(category)">{{category || 'General'}}</button>
+        </mat-menu>
+    </div>
+    <div class="search-bar">
+        <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Search</mat-label>
+            <input matInput [formControl]="query">
+        </mat-form-field>
+    </div>
+    <div class="user-profile">
+        <button mat-icon-button>
+            <fa-icon [icon]="user"></fa-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

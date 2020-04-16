@@ -1,0 +1,15 @@
+.filter {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter-box {
+        position: absolute;
+        top: 60px;
+        z-index: 100;
+        width: 350px;
+        height: fit-content;
+    }
+}  
+

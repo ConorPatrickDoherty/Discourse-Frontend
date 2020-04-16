@@ -1,0 +1,14 @@
+<mat-card class="article-item-container" (click)="ViewArticle()">
+    <div class="article-content">
+        <div class="image-wrap" *ngIf="Article && Article.urlToImage">
+            <div class="fill-wrap">
+                <img class="image-fill" [src]="Article.urlToImage">
+            </div>
+            <img class="image-main" [src]="Article.urlToImage">
+        </div>
+        <div class="markup">
+            <h5>{{Article?.title}}</h5>
+            <p class="content" [innerHTML]="Article?.content || Article?.description"></p>
+        </div>
+    </div>
+</mat-card> 
