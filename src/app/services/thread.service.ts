@@ -9,12 +9,12 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ThreadService {
-  Article:Observable<Article>
+  Thread:Observable<Article>
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').subscribe(res => {
       if (res.routerReducer.state.params.threadId) {
-        this.Article = this._ViewThread({ threadId: res.routerReducer.state.params.threadId }).pipe(catchError(err => 
+        this.Thread = this._ViewThread({ threadId: res.routerReducer.state.params.threadId }).pipe(catchError(err => 
           err.code == 'not-found' && res.articleReducer.url != '' ? this.CreateThread(res.articleReducer) : 'Error creating new thread'
         ))
       }
@@ -25,6 +25,14 @@ export class ThreadService {
     return this._CreateThread({article})
   }
 
-  _ViewThread =  this.functions.httpsCallable('ViewThread')
-  _CreateThread = this.functions.httpsCallable('CreateThread')
+  CreateComment(comment:string):Observable<string> {
+    this.Thread.subscribe(x => {
+      console.log(x)
+    })
+    return this._CreateComment({comment, })
+  }
+
+  private _ViewThread =  this.functions.httpsCallable('ViewThread')
+  private _CreateThread = this.functions.httpsCallable('CreateThread')
+  private _CreateComment = this.functions.httpsCallable('CreateComment')
 }

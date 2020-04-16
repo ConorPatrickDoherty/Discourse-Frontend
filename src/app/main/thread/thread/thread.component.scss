@@ -1,15 +1,11 @@
 $image-dimensions: 30vw;
 
-mat-card {
-    margin: 10px;
-}
-
 .thread-container {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
+
     .article-container {
         flex-basis: 30%;
         height: 100%;
@@ -25,19 +21,61 @@ mat-card {
 
         .comment-section {
             flex-basis: 80%;
+            margin: 20px;
         }
         
         .comment-form {
             flex-basis: 20%;
+            width: 100%;
+            height: 100%;
+            margin: 20px;
 
-            mat-form-field {
-                width: 100%;
 
-                textarea {
-                    resize: none;
+            mat-card {
+                height: 100%;
+                position: relative;
+
+                mat-form-field {
+                    width: 100%;
+                    height: 100%;
+
+                    textarea {
+                        resize: none;
+                        height: 100%;
+                        font-size: 14px;
+                    }    
+                }
+
+                .button-row {
+                    height: 30%;
+                    width: 100%;
+                    border-radius: 0 0 5px 5px;
+                    padding: 0 2px 2px;
+                    transform: translateY(-100%);
+                    background-color: rgba($color: #000000, $alpha: 0.4);
+                    display: flex;
+                    flex-direction: column;
+
+                    .submit {
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
             }
         }
     }
 }
 
+.comment-form ::ng-deep.mat-form-field-wrapper {
+    height: 100%;
+    padding: 0;
+
+    .mat-form-field-flex {
+        height: 100%;
+
+        .mat-form-field-infix {
+            height: 80%;
+        }
+        
+    }
+}
