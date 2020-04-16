@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
 import { Credentials } from '../interfaces/credentials';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Credentials } from '../interfaces/credentials';
 export class AuthenticationService {
   isSignedIn: Observable<boolean>
 
-  constructor(private auth: AngularFireAuth, private store: Store<any>) { 
+  constructor(private auth: AngularFireAuth, private store: Store<any>, private router: Router) { 
     // this.auth.onAuthStateChanged((user) => {
     //   if (!user) {
     //     this.store.dispatch({
@@ -36,11 +37,13 @@ export class AuthenticationService {
           photoURL: credential.user.photoURL
         } 
       })
-      console.log(`user ID: ${credential.user.uid}`)
+      this.router.navigate([''])
     })
     .catch(function(error) {
       console.log(error.message)
     })
+
+  SignOut =():Promise<void> => this.auth.signOut() 
 
   SignUp = (credentials:Credentials): Promise<firebase.auth.UserCredential> => this.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
 }

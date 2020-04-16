@@ -15,12 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ThreadComponent } from './thread/thread/thread.component';
+import { MatCardModule } from '@angular/material/card';
+import { ClickElsewhereDirective } from '../directives/click-elsewhere.directive';
 
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    ClickElsewhereDirective
   ],
   imports: [
     CommonModule,
@@ -35,12 +37,16 @@ import { ThreadComponent } from './thread/thread/thread.component';
     MatSidenavModule,
     MatFormFieldModule,
     MatMenuModule,
+    MatCardModule,
     MatButtonModule,
     MatInputModule,
     FontAwesomeModule
   ],
   providers: [
-    {provide: RouterStateSerializer, useClass: CustomSerializer}
+    {
+      provide: RouterStateSerializer, 
+      useClass: CustomSerializer
+    }
   ]
 })
 export class MainModule { }
