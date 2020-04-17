@@ -1,0 +1,40 @@
+mat-card {
+    padding: 5px 10px 8px 0;
+    .details {
+        font-size: 12px;
+        display: block;
+        color: lightgray;
+    }
+
+    .body {
+        display: flex;
+
+        .content {
+            flex-grow: 1;
+            font-size: 14px;
+            max-width: 85%;
+        }
+
+        .vote {
+            width: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
+    }    
+}
+.link-row {
+    text-align: right;
+    .text-link {
+        padding: 3px 10px ;
+        font-size: 14px;
+        font-weight: 300;
+        display: inline-block;
+        width: fit-content;
+        cursor: pointer;
+    
+        span {
+            padding-left: 10px;
+        }
+    }
+}
+

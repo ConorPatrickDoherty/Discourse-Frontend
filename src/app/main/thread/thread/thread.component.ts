@@ -1,10 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { ThreadService } from 'src/app/services/thread.service';
-
-import { Article } from 'src/app/interfaces/article';
-import { Observable } from 'rxjs';
-import { debounce, debounceTime } from 'rxjs/operators';
-import { NgZone } from '@angular/core'
 import { FormControl } from '@angular/forms';
 import { Thread } from 'src/app/interfaces/thread';
 import { CommentService } from 'src/app/services/comment.service';

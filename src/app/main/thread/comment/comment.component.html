@@ -1,1 +1,27 @@
-<p>comment works!</p>
+<mat-card>
+    <div class="body">
+        <div class="vote">
+                <fa-icon [icon]="voteUp"></fa-icon>
+            <div>20</div>
+                <fa-icon [icon]="voteDown"></fa-icon>
+        </div>
+        <div class="content">
+            <span class="details">{{Comment.user.username}}</span>
+            <p>{{Comment.content}}</p>
+            <div class="details">
+                {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
+                <span></span>
+            </div>
+        </div>
+    </div>
+</mat-card>
+<div class="link-row">
+    <div class="text-link" (click)="LoadChildren()">
+        <fa-icon [icon]="openComment"></fa-icon>
+        <span>View all 4 replies</span>
+    </div>
+    <div class="text-link" (click)="Reply()">
+        <fa-icon [icon]="reply"></fa-icon>
+        <span>Reply</span>
+    </div>
+</div>
