@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { debounce, debounceTime } from 'rxjs/operators';
 import { NgZone } from '@angular/core'
 import { FormControl } from '@angular/forms';
+import { Thread } from 'src/app/interfaces/thread';
 
 @Component({
   selector: 'app-thread',
@@ -13,23 +14,21 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./thread.component.scss']
 })
 export class ThreadComponent implements OnInit {
-  Article: Article 
+  Thread: Thread 
   comment: FormControl = new FormControl('')
 
   constructor(private threads: ThreadService, private ref: ApplicationRef) { }
 
   ngOnInit() {
     this.threads.Thread.subscribe(x => {
-      this.Article = x
-      console.log('done')
-      setTimeout(() => {
-        this.ref.tick()
-      }, 500)
+      this.Thread = x
+      console.log(x)
+      this.ref.tick()
     })
   }
 
   Submit() {
-    this.threads.CreateComment(this.comment.value).subscribe(x => {
+    this.threads.CreateComment(this.comment.value, this.Thread.id).subscribe(x => {
       console.log(x)
     })
   }

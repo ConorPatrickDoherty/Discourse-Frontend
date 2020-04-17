@@ -10,12 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
   declarations: [
     ThreadComponent,
-    ArticleComponent
+    ArticleComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,

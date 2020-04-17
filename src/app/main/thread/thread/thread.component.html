@@ -1,12 +1,12 @@
 <div class="thread-container" >
-    <div class="article-container" *ngIf="Article">
-        <app-article [Article]="Article"></app-article>
+    <div class="article-container" *ngIf="Thread">
+        <app-article [Article]="Thread"></app-article>
     </div>
     <div class="comment-container">
-        <div class="comment-section">
-            <mat-card>
+        <div class="comment-section" *ngIf="Thread">
+            <div *ngFor="let comment of Thread?.comments">
                 <span>This is a comment</span>
-            </mat-card>
+            </div>
         </div>
         <div class="comment-form">
             <mat-card>
