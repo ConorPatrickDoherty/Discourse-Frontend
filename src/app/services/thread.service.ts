@@ -29,11 +29,6 @@ export class ThreadService {
     return this._CreateThread({article})
   }
 
-  CreateComment(comment:string, parentId: string):Observable<string> {
-    return this._CreateComment({comment, parentId })
-  }
-
   private _ViewThread =  this.functions.httpsCallable('ViewThread')
   private _CreateThread = this.functions.httpsCallable('CreateThread')
-  private _CreateComment = this.functions.httpsCallable('CreateComment')
 }

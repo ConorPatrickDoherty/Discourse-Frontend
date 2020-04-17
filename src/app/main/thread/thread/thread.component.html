@@ -5,7 +5,7 @@
     <div class="comment-container">
         <div class="comment-section" *ngIf="Thread">
             <div *ngFor="let comment of Thread?.comments">
-                <span>This is a comment</span>
+                <span>{{comment.content}}</span>
             </div>
         </div>
         <div class="comment-form">
