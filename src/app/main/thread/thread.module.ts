@@ -12,13 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 
 @NgModule({
   declarations: [
     ThreadComponent,
     ArticleComponent,
-    CommentComponent
+    CommentComponent,
+    CommentFormComponent
   ],
   imports: [
     CommonModule,

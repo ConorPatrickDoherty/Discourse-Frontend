@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
+import { Component, OnInit,  ApplicationRef } from '@angular/core';
 import { ThreadService } from 'src/app/services/thread.service';
-import { FormControl } from '@angular/forms';
 import { Thread } from 'src/app/interfaces/thread';
-import { CommentService } from 'src/app/services/comment.service';
+import { Comment } from '../../../interfaces/comment'
 
 @Component({
   selector: 'app-thread',
@@ -11,9 +10,8 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class ThreadComponent implements OnInit {
   Thread: Thread 
-  comment: FormControl = new FormControl('')
 
-  constructor(private threads: ThreadService, private ref: ApplicationRef, private comments: CommentService) { }
+  constructor(private threads: ThreadService, private ref: ApplicationRef) { }
 
   ngOnInit() {
     this.threads.Thread.subscribe(x => {
@@ -22,12 +20,8 @@ export class ThreadComponent implements OnInit {
     })
   }
 
-  Submit() {
-    this.comments.CreateComment(this.comment.value, this.Thread.id).subscribe(x => {
-      this.comments.GetComments(this.Thread.id).subscribe(x => {
-        this.Thread.comments = x
-        this.ref.tick()
-      })
-    })
+  refreshComments(event:Comment[]) {
+    this.Thread.comments = event;
+    this.ref.tick();
   }
 }

@@ -10,7 +10,7 @@ export class CommentService {
 
   constructor(private functions: AngularFireFunctions) { }
 
-  CreateComment(comment:string, parentId: string):Observable<Comment> {
+  CreateComment(comment:string, parentId: string):Observable<Comment[]> {
     return this._CreateComment({ comment, parentId })
   }
 

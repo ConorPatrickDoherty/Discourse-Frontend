@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="comment-wrap">
     <div class="body">
         <div class="vote">
                 <fa-icon [icon]="voteUp"></fa-icon>
@@ -23,5 +23,15 @@
     <div class="text-link" (click)="Reply()">
         <fa-icon [icon]="reply"></fa-icon>
         <span>Reply</span>
+    </div>
+</div>
+<div class="form-wrap" *ngIf="formOpen">
+    <mat-card>
+        <app-comment-form [replyingToID]="Comment.id"></app-comment-form>
+    </mat-card>
+</div>
+<div class="replies-container">
+    <div class="reply" *ngFor="let comment of Replies">
+        <app-comment [Comment]="comment"></app-comment>
     </div>
 </div>
