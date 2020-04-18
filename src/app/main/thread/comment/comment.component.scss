@@ -19,6 +19,26 @@
             width: 40px;
             font-size: 14px;
             text-align: center;
+
+            .vote-icon-wrap {
+                width: 20px;
+                display: inline-block;
+
+                .vote-icon {    
+
+                    fa-icon {
+                        cursor: pointer;
+                    }
+                }
+
+                .upvoted {
+                    color: #69f0ae;
+                }
+
+                .downvoted {
+                    color: #f44336;
+                }
+            }
         }
     }    
 }

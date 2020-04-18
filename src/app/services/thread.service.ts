@@ -17,7 +17,7 @@ export class ThreadService {
       if (res.routerReducer.state.params.threadId) {
         const body = { threadId: res.routerReducer.state.params.threadId }
         if (res.articleReducer.url != '') body['article'] = res.articleReducer
-        console.log(res.routerReducer.state.params.threadId)
+
         this.Thread = this._ViewThread(body).pipe(catchError(err => 
           err.code == 'not-found' ?  'Error getting thread' : 'Error creating new thread'
         ))

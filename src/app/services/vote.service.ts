@@ -10,9 +10,14 @@ export class VoteService {
 
   constructor(private functions: AngularFireFunctions) {}
 
-  VoteForComment(voteValue: number, commentId: string):Observable<Vote> {
+  VoteForComment(voteValue: number, commentId: string):Observable<number> {
     return this._VoteForComment({ voteValue, commentId })
   }
 
+  GetVote(parentId: string):Observable<Vote> {
+    return this._GetVote({ parentId })
+  }
+
   private _VoteForComment = this.functions.httpsCallable('VoteForComment')
+  private _GetVote = this.functions.httpsCallable('GetVoteByParent')
 }

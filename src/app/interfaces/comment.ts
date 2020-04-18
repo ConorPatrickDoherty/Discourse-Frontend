@@ -10,6 +10,6 @@ export interface Comment {
         _seconds: number,
         _nanoSeconds: number
     },
-    score: Vote[],
+    score: number,
     replyCount: number
 }

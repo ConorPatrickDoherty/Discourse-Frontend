@@ -1,9 +1,17 @@
 <mat-card class="comment-wrap">
     <div class="body">
         <div class="vote">
-            <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+            <div class="vote-icon-wrap">
+                <div class="vote-icon" [ngClass]="{'upvoted': CurrentVote.value === 1}" *ngIf="CurrentVote" >
+                    <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+                </div>
+            </div>
             <div>{{Comment.score}}</div>
-            <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
+            <div class="vote-icon-wrap">
+                <div class="vote-icon" [ngClass]="{'downvoted': CurrentVote.value === -1}" *ngIf="CurrentVote">
+                    <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
+                </div>
+            </div>
         </div>
         <div class="content">
             <span class="details">{{Comment.user.username}}</span>
