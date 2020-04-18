@@ -1,12 +1,22 @@
 <mat-card>
     <div class="image-wrap">
-        <img class="image-main" [src]="Article?.urlToImage">
+        <img class="image-main" [src]="Thread?.urlToImage">
     </div>
-    <h1 class="title">{{Article.title}}</h1>
-    <span class="source">{{Article.author}}, {{Article.source.name}}</span>
+    <h1 class="title">{{Thread.title}}</h1>
+    <span class="source">{{Thread.author}}, {{Thread.source.name}}</span>
     <div class="info-wrap">
-        <span class="timestamp">{{ Article.publishedAt.split('T')[0] }}</span>
-        <span>Upvote section</span>
+        <span class="timestamp">{{ Thread.publishedAt.split('T')[0] }}</span>
+        <span class="details">
+            <span class="vote">
+                <fa-icon [icon]="VoteUp"></fa-icon>
+                {{ Thread.score }}
+                <fa-icon [icon]="VoteDown"></fa-icon>
+            </span>
+            <span class="reply-count">
+                <fa-icon [icon]="Comment"></fa-icon>
+                {{ Thread.replyCount }}
+            </span>
+        </span>
     </div>
-    <p>{{Article.content}}</p>
+    <p>{{Thread.content}}</p>
 </mat-card>

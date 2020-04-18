@@ -1,0 +1,46 @@
+<mat-card class="comment-wrap">
+    <div class="body">
+        <div class="vote">
+            <div class="vote-icon-wrap">
+                <div class="vote-icon" [ngClass]="{'upvoted': CurrentVote.value === 1}" *ngIf="CurrentVote" >
+                    <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+                </div>
+            </div>
+            <div>{{Comment.score}}</div>
+            <div class="vote-icon-wrap">
+                <div class="vote-icon" [ngClass]="{'downvoted': CurrentVote.value === -1}" *ngIf="CurrentVote">
+                    <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <span class="details">{{Comment.user.username}}</span>
+            <p>{{Comment.content}}</p>
+            <div class="details">
+                {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
+                <span></span>
+            </div>
+        </div>
+    </div>
+</mat-card>
+<div class="link-row">
+    <div class="text-link" (click)="LoadChildren()" *ngIf="Comment.replyCount">
+        <fa-icon [icon]="openComment"></fa-icon>
+        <span *ngIf="Comment.replyCount > 1; else singleReply"> {{repliesOpen ? 'Hide' : 'View'}} all {{Comment.replyCount}} replies</span>
+        <ng-template #singleReply><span>{{repliesOpen ? 'Hide' : 'View'}} 1 reply</span></ng-template>
+    </div>
+    <div class="text-link" (click)="Reply()">
+        <fa-icon [icon]="reply"></fa-icon>
+        <span>Reply</span>
+    </div>
+</div>
+<div class="form-wrap" *ngIf="formOpen">
+    <mat-card>
+        <app-comment-form [replyingToID]="Comment.id" (refresh)="Reload($event)"></app-comment-form>
+    </mat-card>
+</div>
+<div class="replies-container" *ngIf="repliesOpen">
+    <div class="reply" *ngFor="let comment of Replies">
+        <app-comment [Comment]="comment"></app-comment>
+    </div>
+</div>

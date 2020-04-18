@@ -1,11 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
+import { Component, OnInit,  ApplicationRef } from '@angular/core';
 import { ThreadService } from 'src/app/services/thread.service';
-
-import { Article } from 'src/app/interfaces/article';
-import { Observable } from 'rxjs';
-import { debounce, debounceTime } from 'rxjs/operators';
-import { NgZone } from '@angular/core'
-import { FormControl } from '@angular/forms';
+import { Thread } from 'src/app/interfaces/thread';
+import { Comment } from '../../../interfaces/comment'
 
 @Component({
   selector: 'app-thread',
@@ -13,24 +9,19 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./thread.component.scss']
 })
 export class ThreadComponent implements OnInit {
-  Article: Article 
-  comment: FormControl = new FormControl('')
+  Thread: Thread 
 
   constructor(private threads: ThreadService, private ref: ApplicationRef) { }
 
   ngOnInit() {
     this.threads.Thread.subscribe(x => {
-      this.Article = x
-      console.log('done')
-      setTimeout(() => {
-        this.ref.tick()
-      }, 500)
+      this.Thread = x
+      this.ref.tick()
     })
   }
 
-  Submit() {
-    this.threads.CreateComment(this.comment.value).subscribe(x => {
-      console.log(x)
-    })
+  refreshComments(event:Comment[]) {
+    this.Thread.comments = event;
+    this.ref.tick();
   }
 }

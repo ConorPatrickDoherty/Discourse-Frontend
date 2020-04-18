@@ -26,7 +26,7 @@ export class ArticleListComponent implements OnInit {
           ...res, 
           //remove duplicate articles where URLS match
           articles: res.articles.filter((v, i, s) => {
-            return i === s.findIndex((a) => (a.url === v.url))
+            return i === s.findIndex((a) => (a.url === v.url)) && v.url
           })
         }
       }  

@@ -1,22 +1,19 @@
-<div class="thread-container" >
-    <div class="article-container" *ngIf="Article">
-        <app-article [Article]="Article"></app-article>
+<div class="thread-container" *ngIf="Thread">
+    <div class="article-container">
+        <app-article [Thread]="Thread"></app-article>
     </div>
     <div class="comment-container">
-        <div class="comment-section">
-            <mat-card>
-                <span>This is a comment</span>
-            </mat-card>
+        <div class="sort-bar">
+            
+        </div>
+        <div class="comment-section" >
+            <div *ngFor="let comment of Thread?.comments">
+                <app-comment [Comment]="comment"></app-comment>
+            </div>
         </div>
         <div class="comment-form">
             <mat-card>
-                <mat-form-field color="accent" floatLabel="auto" appearance="outline">
-                    <mat-label>Leave a comment</mat-label>
-                    <textarea ngModel ngDefaultControl matInput [formControl]="comment"></textarea>
-                </mat-form-field>
-                <div class="button-row">
-                    <button class="submit" mat-button color="accent" (click)="Submit()">Submit</button>
-                </div>
+                <app-comment-form [replyingToID]="Thread.id" (refresh)="refreshComments($event)"></app-comment-form>
             </mat-card>
         </div>
     </div>

@@ -22,7 +22,6 @@ export class NewsApiService {
         if (res.state.queryParams.q) 
           url = url.concat(`&q=${res.state.queryParams.q.split('-').join('+')}`)              
   
-        console.log(url)
         this.http.get<NewsApiResponse>(url).subscribe(
           A => {
              this.Articles.next(A)

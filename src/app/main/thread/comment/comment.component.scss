@@ -1,0 +1,73 @@
+.comment-wrap {
+    padding: 5px 10px 8px 0;
+    .details {
+        font-size: 12px;
+        display: block;
+        color: lightgray;
+    }
+
+    .body {
+        display: flex;
+
+        .content {
+            flex-grow: 1;
+            font-size: 14px;
+            max-width: 85%;
+        }
+
+        .vote {
+            width: 40px;
+            font-size: 14px;
+            text-align: center;
+
+            .vote-icon-wrap {
+                width: 20px;
+                display: inline-block;
+
+                .vote-icon {    
+
+                    fa-icon {
+                        cursor: pointer;
+                    }
+                }
+
+                .upvoted {
+                    color: #69f0ae;
+                }
+
+                .downvoted {
+                    color: #f44336;
+                }
+            }
+        }
+    }    
+}
+
+.link-row {
+    text-align: right;
+    .text-link {
+        padding: 3px 10px ;
+        font-size: 14px;
+        font-weight: 300;
+        display: inline-block;
+        width: fit-content;
+        cursor: pointer;
+    
+        span {
+            padding-left: 10px;
+        }
+    }
+}
+
+.form-wrap {
+    margin: 5px 0 5px 20px;
+
+    mat-card {
+        padding: 5px 10px 0;
+        margin-bottom: 25px;
+    }
+}
+
+.replies-container {
+    margin-left: 20px;
+}
