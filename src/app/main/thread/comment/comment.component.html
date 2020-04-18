@@ -1,9 +1,9 @@
 <mat-card class="comment-wrap">
     <div class="body">
         <div class="vote">
-                <fa-icon [icon]="voteUp"></fa-icon>
-            <div>20</div>
-                <fa-icon [icon]="voteDown"></fa-icon>
+            <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+            <div>{{Comment.score}}</div>
+            <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
         </div>
         <div class="content">
             <span class="details">{{Comment.user.username}}</span>
@@ -16,9 +16,10 @@
     </div>
 </mat-card>
 <div class="link-row">
-    <div class="text-link" (click)="LoadChildren()">
+    <div class="text-link" (click)="LoadChildren()" *ngIf="Comment.replyCount">
         <fa-icon [icon]="openComment"></fa-icon>
-        <span>View all 4 replies</span>
+        <span *ngIf="Comment.replyCount > 1; else singleReply"> {{repliesOpen ? 'Hide' : 'View'}} all {{Comment.replyCount}} replies</span>
+        <ng-template #singleReply><span>{{repliesOpen ? 'Hide' : 'View'}} 1 reply</span></ng-template>
     </div>
     <div class="text-link" (click)="Reply()">
         <fa-icon [icon]="reply"></fa-icon>
@@ -27,10 +28,10 @@
 </div>
 <div class="form-wrap" *ngIf="formOpen">
     <mat-card>
-        <app-comment-form [replyingToID]="Comment.id"></app-comment-form>
+        <app-comment-form [replyingToID]="Comment.id" (refresh)="Reload($event)"></app-comment-form>
     </mat-card>
 </div>
-<div class="replies-container">
+<div class="replies-container" *ngIf="repliesOpen">
     <div class="reply" *ngFor="let comment of Replies">
         <app-comment [Comment]="comment"></app-comment>
     </div>

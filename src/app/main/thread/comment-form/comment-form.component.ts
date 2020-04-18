@@ -21,7 +21,7 @@ export class CommentFormComponent implements OnInit {
 
   Submit() {
     this.comments.CreateComment(this.comment.value, this.replyingToID).subscribe(x => {
-      console.log('brrruhhh ')
+      console.log(x)
       this.refresh.emit(x)
     })
   }
