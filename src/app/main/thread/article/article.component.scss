@@ -34,10 +34,25 @@ mat-card {
 
 .info-wrap {
     font-weight: 300;
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
 
-    .timestamp {
-        
+    .details {
+        padding-right: 15px;
+
+        .vote {
+            padding: 0 10px;
+
+            fa-icon {
+                padding: 0 5px;
+            }
+        }
+
+        .reply-count {
+            fa-icon {
+                padding: 0 5px;
+            }
+        }
     }
 }

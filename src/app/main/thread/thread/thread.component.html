@@ -1,8 +1,11 @@
 <div class="thread-container" *ngIf="Thread">
     <div class="article-container">
-        <app-article [Article]="Thread"></app-article>
+        <app-article [Thread]="Thread"></app-article>
     </div>
     <div class="comment-container">
+        <div class="sort-bar">
+            
+        </div>
         <div class="comment-section" >
             <div *ngFor="let comment of Thread?.comments">
                 <app-comment [Comment]="comment"></app-comment>

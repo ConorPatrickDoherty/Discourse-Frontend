@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Article } from 'src/app/interfaces/article';
+import { faComments, IconDefinition, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { Thread } from 'src/app/interfaces/thread';
 
 @Component({
   selector: 'app-article',
@@ -7,7 +8,10 @@ import { Article } from 'src/app/interfaces/article';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  @Input() Article:Article
+  @Input() Thread: Thread;
+  Comment:IconDefinition = faComments;
+  VoteUp: IconDefinition = faArrowUp;
+  VoteDown: IconDefinition = faArrowDown;
 
   constructor() { }
 

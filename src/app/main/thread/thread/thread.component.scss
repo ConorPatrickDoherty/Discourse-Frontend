@@ -15,18 +15,18 @@ $image-dimensions: 30vw;
     
     .comment-container {
         flex-basis: 60%;
-        height: 100%;
+        margin: 20px 20px;
         display: flex;
         flex-direction: column;
 
         .comment-section {
+            margin: 20px 5px 25vh;
             height: fit-content;
-            margin: 20px 20px 25vh;
         }
         
         .comment-form {
             width: 60%;
-            bottom: 0;
+            bottom: 20px;
             background-color: #303030;
             position: fixed;
         }
