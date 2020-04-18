@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Vote } from './vote';
 
 export interface Comment {
     id: string,
@@ -9,5 +10,6 @@ export interface Comment {
         _seconds: number,
         _nanoSeconds: number
     },
-    score: number
+    score: Vote[],
+    replyCount: number
 }
