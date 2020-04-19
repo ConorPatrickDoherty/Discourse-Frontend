@@ -10,7 +10,8 @@ const initialState:User = {
     createdAt: {
         _nanoseconds: 0,
         _seconds: 0
-    }
+    },
+    role: ''
 }
 
 export const profileReducer = createReducer(

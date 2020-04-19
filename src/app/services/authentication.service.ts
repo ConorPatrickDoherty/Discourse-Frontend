@@ -37,7 +37,7 @@ export class AuthenticationService {
 
   SignUp = (credentials:Credentials) => {
     this._CreateUser({credentials}).subscribe(x => {
-      console.log(x)
+      this.SignIn(credentials)
     })
   }
 
