@@ -19,6 +19,7 @@ export class CommentComponent implements OnInit {
   Replies: Comment[] = [];
   CurrentVote: Vote;
   LocalDate: moment.Moment;
+  LoggedInEmail: string;
   canEdit:boolean = false;
   formOpen:boolean = false;
   repliesOpen: boolean = false;
@@ -28,7 +29,7 @@ export class CommentComponent implements OnInit {
   voteDown: IconDefinition = faArrowDown;
   reply: IconDefinition = faReply;
   menu: IconDefinition = faEllipsisV;
-  delete: IconDefinition = faTrashAlt;
+  trash: IconDefinition = faTrashAlt;
   lock: IconDefinition = faLock;
 
   constructor(
@@ -41,6 +42,7 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select('profileReducer').subscribe(res => {
+      this.LoggedInEmail = res.email
       if (res && res.email === this.Comment.user.email) {
         this.canEdit = true;
       }
@@ -67,13 +69,15 @@ export class CommentComponent implements OnInit {
     if (!this.Comment.locked && !this.Comment.deleted) {
       return this.formOpen = !this.formOpen;
     } 
-    this.snackbar.open('As this comment thread is locked, you can no longer reply to it', 'Close', {
+    const message = this.Comment.deleted ? 'has been deleted' : 'is locked' 
+    this.snackbar.open(`As this comment thread ${message}, you can no longer reply to it`, 'Close', {
       duration: 2000,
     });
   }
 
   Reload(event: Comment[]): void {
     this.Replies = event;
+    this.Comment.replyCount = event.length;
     this.formOpen = false;
     this.repliesOpen = true;
     this.ref.tick()

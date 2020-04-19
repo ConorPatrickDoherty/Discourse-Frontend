@@ -27,11 +27,11 @@ export class CommentService {
     return this._GetComments({ parentId });
   }
 
-  DeleteComment(commentId: string): Observable<void> {
+  DeleteComment(commentId: string): Observable<Comment[]> {
     return this._DeleteComment({ commentId });
   }
 
-  LockComment(commentId: string): Observable<void> {
+  LockComment(commentId: string): Observable<Comment[]> {
     return this._LockComment({commentId});
   }
 

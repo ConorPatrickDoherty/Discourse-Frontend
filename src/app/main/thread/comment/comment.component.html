@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="content">
-            <span class="details" [ngClass]="{ 'is-user': canEdit }">{{Comment.user.username}}</span>
+            <span class="details" [ngClass]="{ 'is-user': Comment.user.email === LoggedInEmail }">{{Comment.user.username}}</span>
             <p>{{Comment.content}}</p>
             <div class="details">
                 {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
@@ -22,17 +22,22 @@
             </div>
         </div>
         <div class="menu-container">
-            <button  mat-mini-fab disabled *ngIf="Comment.locked; else edit" >
-                <fa-icon [icon]="lock" ></fa-icon>
+            <button mat-mini-fab disabled *ngIf="Comment.deleted; else locked">
+                <fa-icon [icon]="trash" ></fa-icon>
             </button>
-            <ng-template #edit>
-                <button *ngIf="canEdit" class="menu-button" mat-icon-button [matMenuTriggerFor]="commentMenu">
-                    <fa-icon [icon]="menu"></fa-icon>
+            <ng-template #locked>
+                <button mat-mini-fab disabled *ngIf="Comment.locked && !canEdit; else edit">
+                    <fa-icon [icon]="lock" ></fa-icon>
                 </button>
-                <mat-menu class="menu" #commentMenu xPosition="before">
-                    <button mat-menu-item (click)="Delete()"><fa-icon [icon]="delete"></fa-icon>Delete</button>
-                    <button mat-menu-item (click)="Lock()"><fa-icon [icon]="lock"></fa-icon>Lock</button>
-                </mat-menu>
+                <ng-template #edit>
+                    <button *ngIf="canEdit" class="menu-button" mat-icon-button [matMenuTriggerFor]="commentMenu">
+                        <fa-icon [icon]="menu"></fa-icon>
+                    </button>
+                    <mat-menu class="menu" #commentMenu xPosition="before">
+                        <button mat-menu-item (click)="Delete()"><fa-icon [icon]="trash"></fa-icon>Delete</button>
+                        <button mat-menu-item [disabled]="Comment.locked" (click)="Lock()"><fa-icon [icon]="lock"></fa-icon>Lock</button>
+                    </mat-menu>
+                </ng-template>
             </ng-template>
         </div>
     </div>
