@@ -9,12 +9,9 @@ mat-toolbar {
     justify-content: space-evenly;
 
     .title {
+        cursor: pointer;
         display: flex;
         justify-content: space-evenly;
-
-        fa-icon {
-
-        }
 
         h1 {
             font-size: 30px;

@@ -46,13 +46,22 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
- 
+    
   }
 
   ngAfterViewInit() {
     //specify the CDK overlay for this menu as the first one rendered in view
     this.menuTrigger.openMenu();
     this.menuTrigger.closeMenu();
+  }
+
+  EditProfile() {
+    this.router.navigate(['profile'])
+    this.showingProfile = false
+  }
+
+  OpenNewsFeed() {
+    this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q: this.query.value } })
   }
 
   ChangeCategory = (category:string) => this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })

@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'thread/:threadId',
         loadChildren: () => import('./thread/thread.module').then(m => m.ThreadModule)        
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./edit-profile/edit-profile.module').then(m => m.EditProfileModule)
       }
     ]
   }
