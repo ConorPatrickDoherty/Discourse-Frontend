@@ -52,7 +52,7 @@ export class CommentComponent implements OnInit {
   }
 
   Vote(value: number): void {
-    this.voting.VoteForComment(value, this.Comment.id).subscribe()
+    this.voting.VoteForItem(value, this.Comment.id).subscribe()
     if (this.CurrentVote.value === 0) value = value
     else if (this.CurrentVote.value !== value) value = value + value 
     else value = value * -1

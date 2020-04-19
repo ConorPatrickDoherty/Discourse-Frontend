@@ -5,6 +5,6 @@ import { Vote } from './vote';
 export interface Thread extends Article {
     id: string,
     comments: Comment[],
-    score: Vote[],
+    score: number,
     replyCount: number
 }
