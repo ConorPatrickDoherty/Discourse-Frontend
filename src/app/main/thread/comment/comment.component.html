@@ -2,24 +2,38 @@
     <div class="body">
         <div class="vote">
             <div class="vote-icon-wrap">
-                <div class="vote-icon" [ngClass]="{'upvoted': CurrentVote.value === 1}" *ngIf="CurrentVote" >
+                <div class="vote-icon" [ngClass]="{ 'upvoted': CurrentVote.value === 1 }" *ngIf="CurrentVote" >
                     <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
                 </div>
             </div>
             <div>{{Comment.score}}</div>
             <div class="vote-icon-wrap">
-                <div class="vote-icon" [ngClass]="{'downvoted': CurrentVote.value === -1}" *ngIf="CurrentVote">
+                <div class="vote-icon" [ngClass]="{ 'downvoted': CurrentVote.value === -1 }" *ngIf="CurrentVote">
                     <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
                 </div>
             </div>
         </div>
         <div class="content">
-            <span class="details">{{Comment.user.username}}</span>
+            <span class="details" [ngClass]="{ 'is-user': canEdit }">{{Comment.user.username}}</span>
             <p>{{Comment.content}}</p>
             <div class="details">
                 {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
                 <span></span>
             </div>
+        </div>
+        <div class="menu-container">
+            <button  mat-mini-fab disabled *ngIf="Comment.locked; else edit" >
+                <fa-icon [icon]="lock" ></fa-icon>
+            </button>
+            <ng-template #edit>
+                <button *ngIf="canEdit" class="menu-button" mat-icon-button [matMenuTriggerFor]="commentMenu">
+                    <fa-icon [icon]="menu"></fa-icon>
+                </button>
+                <mat-menu class="menu" #commentMenu xPosition="before">
+                    <button mat-menu-item (click)="Delete()"><fa-icon [icon]="delete"></fa-icon>Delete</button>
+                    <button mat-menu-item (click)="Lock()"><fa-icon [icon]="lock"></fa-icon>Lock</button>
+                </mat-menu>
+            </ng-template>
         </div>
     </div>
 </mat-card>
@@ -29,7 +43,7 @@
         <span *ngIf="Comment.replyCount > 1; else singleReply"> {{repliesOpen ? 'Hide' : 'View'}} all {{Comment.replyCount}} replies</span>
         <ng-template #singleReply><span>{{repliesOpen ? 'Hide' : 'View'}} 1 reply</span></ng-template>
     </div>
-    <div class="text-link" (click)="Reply()">
+    <div class="text-link" [ngClass]="{ 'disabled-reply' : Comment.locked }" (click)="Reply()">
         <fa-icon [icon]="reply"></fa-icon>
         <span>Reply</span>
     </div>
