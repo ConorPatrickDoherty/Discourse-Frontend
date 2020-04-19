@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import { timer } from 'rxjs';
@@ -7,6 +7,7 @@ import { CATEGORIES } from '../../../assets/api-settings'
 import { FormControl } from '@angular/forms';
 import { debounce } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-main',
@@ -14,14 +15,16 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  logo:IconDefinition = faFeatherAlt;
-  user:IconDefinition = faUser;
-  dropdown:IconDefinition = faChevronDown;
+  @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
   categories:string[] = CATEGORIES;
   selectedCategory: string;
   selectedLanguage: string;
   query = new FormControl('');
   showingProfile:boolean = false;
+
+  logo:IconDefinition = faFeatherAlt;
+  user:IconDefinition = faUser;
+  dropdown:IconDefinition = faChevronDown;
 
   constructor(private store: Store<{NewsFeed: any}>, private router: Router, private auth: AuthenticationService ) {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
@@ -43,7 +46,13 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+ 
+  }
+
+  ngAfterViewInit() {
+    //specify the CDK overlay for this menu as the first one rendered in view
+    this.menuTrigger.openMenu();
+    this.menuTrigger.closeMenu();
   }
 
   ChangeCategory = (category:string) => this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
