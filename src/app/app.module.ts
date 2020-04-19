@@ -15,9 +15,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { authReducers, metaReducers } from './store';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent

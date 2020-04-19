@@ -13,7 +13,20 @@
             flex-grow: 1;
             font-size: 14px;
             max-width: 85%;
+            position: relative;
+
+            .is-user {
+                color: #69f0ae;
+            }
         }
+
+        .menu-container {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+
+        
 
         .vote {
             width: 40px;
@@ -44,7 +57,9 @@
 }
 
 .link-row {
+    height: 30px;
     text-align: right;
+
     .text-link {
         padding: 3px 10px ;
         font-size: 14px;
@@ -56,6 +71,10 @@
         span {
             padding-left: 10px;
         }
+    }
+
+    .disabled-reply {
+        color: gray;
     }
 }
 
@@ -69,5 +88,26 @@
 }
 
 .replies-container {
-    margin-left: 20px;
+    padding-left: 20px;
+    position: relative;
+
+    .rule {
+        top: -10px;
+        left: 5px;
+        bottom: -10px;
+        width: 2px;
+        padding-bottom: 30px;
+        position: absolute;
+
+        .rule-content {
+            height: 100%;
+            background-color: gray;
+        }
+    }
+}
+
+::ng-deep.mat-menu-item {
+    fa-icon {
+        padding: 0 10px 0 0;
+    }
 }

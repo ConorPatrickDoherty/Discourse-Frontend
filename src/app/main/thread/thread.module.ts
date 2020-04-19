@@ -13,7 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentFormComponent } from './comment-form/comment-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import 'hammerjs'; 
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { CommentFormComponent } from './comment-form/comment-form.component';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
+    MatMenuModule,
+    MatSnackBarModule,
     ReactiveFormsModule
   ]
 })

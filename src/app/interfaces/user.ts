@@ -5,5 +5,6 @@ export interface User {
         _seconds: number,
         _nanoseconds: number
     },
-    email: string
+    email: string,
+    role: string
 }

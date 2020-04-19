@@ -15,19 +15,28 @@ export class CommentService {
     this.store.select('NewsFeed').subscribe(res => {
       if (res.routerReducer.state.params.threadId) {
         this.RootID = res.routerReducer.state.params.threadId
-        console.log(this.RootID)
       }
     })
   }
 
   CreateComment(comment:string, parentId: string):Observable<Comment[]> {
-    return this._CreateComment({ comment, parentId, rootId: this.RootID })
+    return this._CreateComment({ comment, parentId, rootId: this.RootID });
   }
 
   GetComments(parentId: string): Observable<Comment[]> {
-    return this._GetComments({ parentId })
+    return this._GetComments({ parentId });
   }
 
-  private _CreateComment = this.functions.httpsCallable('CreateComment')
-  private _GetComments = this.functions.httpsCallable('GetComments')
+  DeleteComment(commentId: string): Observable<Comment[]> {
+    return this._DeleteComment({ commentId });
+  }
+
+  LockComment(commentId: string): Observable<Comment[]> {
+    return this._LockComment({commentId});
+  }
+
+  private _CreateComment = this.functions.httpsCallable('CreateComment');
+  private _GetComments = this.functions.httpsCallable('GetComments');
+  private _DeleteComment = this.functions.httpsCallable('DeleteComment');
+  private _LockComment = this.functions.httpsCallable('LockComment');
 }

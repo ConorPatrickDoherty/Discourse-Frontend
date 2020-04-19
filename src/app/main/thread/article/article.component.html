@@ -8,9 +8,13 @@
         <span class="timestamp">{{ Thread.publishedAt.split('T')[0] }}</span>
         <span class="details">
             <span class="vote">
-                <fa-icon [icon]="VoteUp"></fa-icon>
-                {{ Thread.score }}
-                <fa-icon [icon]="VoteDown"></fa-icon>
+                <div class="vote-icon" [ngClass]="{'upvoted': CurrentVote.value === 1}" *ngIf="CurrentVote" >
+                    <fa-icon [icon]="VoteUp" (click)="Vote(1)"></fa-icon>
+                </div>
+                    {{ Thread.score }}
+                <div class="vote-icon" [ngClass]="{'downvoted': CurrentVote.value === -1}" *ngIf="CurrentVote">
+                    <fa-icon [icon]="VoteDown" (click)="Vote(-1)"></fa-icon>
+                </div>
             </span>
             <span class="reply-count">
                 <fa-icon [icon]="Comment"></fa-icon>

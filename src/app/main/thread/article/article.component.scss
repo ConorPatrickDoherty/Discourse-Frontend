@@ -44,8 +44,24 @@ mat-card {
         .vote {
             padding: 0 10px;
 
-            fa-icon {
-                padding: 0 5px;
+            .vote-icon {
+                display: inline-block;
+                width: fit-content;
+
+                fa-icon {
+                    padding: 0 5px;
+                    cursor: pointer;
+                }
+            }
+
+            
+
+            .upvoted {
+                color: #69f0ae;
+            }
+
+            .downvoted {
+                color: #f44336;
             }
         }
 
