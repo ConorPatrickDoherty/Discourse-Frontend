@@ -54,6 +54,7 @@
     </mat-card>
 </div>
 <div class="replies-container" *ngIf="repliesOpen">
+    <div class="rule"><div class="rule-content"></div></div>
     <div class="reply" *ngFor="let comment of Replies">
         <app-comment [Comment]="comment"></app-comment>
     </div>
