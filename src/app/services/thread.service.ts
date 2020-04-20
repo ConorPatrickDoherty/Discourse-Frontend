@@ -29,6 +29,11 @@ export class ThreadService {
     return this._CreateThread({article})
   }
 
+  GetThreads():Observable<Thread[]> {
+    return this._GetThreads({})
+  }
+
   private _ViewThread =  this.functions.httpsCallable('ViewThread')
   private _CreateThread = this.functions.httpsCallable('CreateThread')
+  private _GetThreads = this.functions.httpsCallable('GetThreads')
 }
