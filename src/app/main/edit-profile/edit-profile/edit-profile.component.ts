@@ -36,7 +36,6 @@ export class EditProfileComponent implements OnInit {
     this.store.select('profileReducer').subscribe(res => {
       if (res) {
         this.User = res
-        console.log(res.bio)
         if (!this.gotUser) {
           this.auth.GetUserDetails(this.User.email).subscribe((x) => {
             this.User = x;
@@ -69,9 +68,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   UpdateProfile() {
-    console.log(this.UserDetails.get('username').value)
-    console.log(this.UserDetails.get('bio').value)
-    console.log(!this.ImagePlaceholder)
     this.auth.UpdateProfile(
       this.ImagePlaceholder, 
       this.UserDetails.get('username').value, 
