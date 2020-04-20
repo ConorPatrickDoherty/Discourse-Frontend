@@ -6,5 +6,7 @@ export interface User {
         _nanoseconds: number
     },
     email: string,
-    role: string
+    role: string,
+    bio?: string,
+    displayPicture?: string
 }

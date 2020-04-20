@@ -11,13 +11,19 @@ const initialState:User = {
         _nanoseconds: 0,
         _seconds: 0
     },
-    role: ''
+    role: '',
+    bio: '',
+    displayPicture: ''
 }
 
-export const profileReducer = createReducer(
+const _profileReducer = createReducer(
     initialState,
     on(SignInAction, (state: User, action) => ({
         ...state,
         ...action.payload
     }))
 )
+
+export function profileReducer(state, action) {
+    return _profileReducer(state, action)
+}
