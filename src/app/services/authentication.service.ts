@@ -13,16 +13,18 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 export class AuthenticationService {
   isSignedIn: Observable<boolean>
 
-  constructor(private auth: AngularFireAuth, private store: Store<any>, private router: Router, private functions: AngularFireFunctions,) { 
-    
-  }
+  constructor(
+    private auth: AngularFireAuth, 
+    private store: Store<any>, 
+    private router: Router, 
+    private functions: AngularFireFunctions
+  ) { }
 
   SignIn = (credentials:Credentials) => 
     this.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(() => {
       this._GetUser({email: credentials.email}).subscribe((user) => {
-        console.log(user)
-         this.store.dispatch({
+        this.store.dispatch({
           type: 'SignIn',
           payload: user
         })
@@ -41,6 +43,15 @@ export class AuthenticationService {
     })
   }
 
+  GetUserDetails(email:string) {
+    return this._GetUser({email})
+  }
+
+  UpdateProfile(imageString: string, username: string, bio: string ):Observable<any> {
+    return this._UpdateProfile({imageString, username, bio})
+  }
+
   private _CreateUser = this.functions.httpsCallable('CreateUser');
   private _GetUser = this.functions.httpsCallable('GetUser');
+  private _UpdateProfile = this.functions.httpsCallable('UpdateProfile')
 }

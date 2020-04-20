@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ClickElsewhereDirective } from '../directives/click-elsewhere.directive';
 
-
 @NgModule({
   declarations: [
     MainComponent,

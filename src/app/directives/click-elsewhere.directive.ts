@@ -6,7 +6,7 @@ import { Directive, EventEmitter, ElementRef, HostListener, Output } from '@angu
 export class ClickElsewhereDirective {
   @Output() clickElsewhere = new EventEmitter<MouseEvent>(); 
  
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
  
   @HostListener('document:click', ['$event'])
   public onDocumentClick(event: MouseEvent): void {

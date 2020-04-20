@@ -17,10 +17,14 @@ const initialState:Article = {
     content: ''
 }
 
-export const articleReducer = createReducer(
+const _articleReducer = createReducer(
     initialState,
     on(articleAction, (state: Article, action) => ({
         ...state,
         ...action.payload
     }))
 )
+
+export function articleReducer(state, action) {
+    return _articleReducer(state, action)
+}

@@ -1,0 +1,47 @@
+<div class="profile-container container">
+    <mat-card>
+        <div class="top-row">
+            <h1>Your Profile</h1>
+            <button mat-icon-button class="edit-profile" type="button" (click)="EnableEditing()">
+                <fa-icon size="lg" [icon]="isEditing ? cancel : edit"></fa-icon>
+            </button>
+        </div>
+        <hr>
+        <div class="profile-container">
+            <div class="display-picture-wrap" appFileDrop (fileDropped)="UploadImage($event)" (fileHovered)="Hover($event)" *ngIf="isEditing; else viewPic">
+                <img [src]="ImagePlaceholder ? ImagePlaceholder : User.displayPicture" *ngIf="ImagePlaceholder || User.displayPicture; else iconUser">
+                <fa-icon class="hovered" [ngClass]="{ 'display': hoverStyle }" size="4x" [icon]="upload"></fa-icon>
+            </div>
+            <ng-template #viewPic>
+                <div class="display-picture-wrap">
+                    <img [src]="User.displayPicture ? User.displayPicture : 0" *ngIf="ImagePlaceholder || User.displayPicture; else iconUser">
+                </div>
+            </ng-template>
+            <ng-template #iconUser>
+                <fa-icon class="image-placeholder" [icon]="user"></fa-icon>
+            </ng-template>
+            <form class="info-wrap" *ngIf="isEditing; else viewDetails" [formGroup]="UserDetails">
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input class="input-override" type="text" matInput formControlName="username">
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="fill" >
+                    <mat-label>Bio</mat-label>
+                    <textarea ngModel ngDefaultControl matInput formControlName="bio" [value]="User.bio"></textarea>
+                </mat-form-field>
+                <button type="button" mat-flat-button color="accent" (click)="UpdateProfile()">Save</button>
+            </form>
+            <ng-template #viewDetails>
+                <div class="info-wrap">
+                    <h2>{{User.username}}</h2>
+                    <span>Score: {{User.score}}</span>
+                    <span>Email: {{User.email}}</span>
+                    <span>Bio:</span>
+                    <p>{{User?.bio}}</p>
+                </div>
+            </ng-template>
+        </div>
+
+
+    </mat-card>
+</div>
