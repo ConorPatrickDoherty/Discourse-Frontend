@@ -4,34 +4,105 @@
     justify-content: center;
     align-items: center;
 
-    .edit-profile-container {
-        padding: 50px 20px;
-        width: 450px;
-        height: 70vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    mat-card {
+        width: fit-content;
+        padding: 20px 20px 40px;
 
-        mat-card {
-            width: 100%;
-            height: 100%;
-        }
+        .top-row {
+            display: flex;
+            justify-content: space-between;
 
-        .display-picture-wrap {
-            height: 250px;
-            width: 250px;
-            border-radius: 50%;
-            border: 3px solid gray;
-            overflow: hidden;
-            position: relative;
-
-            img {
-                width: 100%;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
+            h1 {
+                margin: 0 5px;
             }
 
+            .edit-profile {
+                align-self: center;
+                margin: 0 5px;
+            }
+        }
+        
+        hr {
+            border-color: lightgray;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: row;
+
+            .display-picture-wrap {
+                height: 250px;
+                width: 250px;
+                border-radius: 50%;
+                border: 3px solid gray;
+                overflow: hidden;
+                position: relative;
+                align-self: center;
+    
+                img {
+                    width: 100%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    position: absolute;
+                    pointer-events: none;
+                }   
+    
+                .hovered {
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    position: absolute;
+                    pointer-events: none;
+                }
+    
+                .display {
+                    color: gray;
+                }
+
+                .image-placeholder {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    position: absolute;
+                    pointer-events: none;
+                }
+            }
+    
+            .edit-image {
+                right: 80px;
+                top: 200px;
+                position: absolute;
+            }
+    
+            h2 {
+                margin: 0;
+            }
+    
+            .info-wrap {
+                width: 350px;
+                height: 270px;
+                padding: 20px;
+                align-self: flex-start;
+
+                mat-form-field {
+                    width: 100%;
+
+                    textarea {
+                        height: 50px;
+                        resize: none
+                    }
+                }
+                
+                button {
+                    width: 100%;
+                }
+
+                span, p {
+                    font-size: 18px;
+                    display: block;
+                }
+            }
         }
     }
 }

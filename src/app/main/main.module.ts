@@ -17,14 +17,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ClickElsewhereDirective } from '../directives/click-elsewhere.directive';
-import { EditProfileComponent } from './edit-profile/edit-profile/edit-profile.component';
-
 
 @NgModule({
   declarations: [
     MainComponent,
-    ClickElsewhereDirective,
-    EditProfileComponent
+    ClickElsewhereDirective
   ],
   imports: [
     CommonModule,

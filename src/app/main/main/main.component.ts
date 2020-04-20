@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ApplicationRef } from '@angular/core';
 import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import { timer } from 'rxjs';
@@ -26,27 +26,28 @@ export class MainComponent implements OnInit {
   user:IconDefinition = faUser;
   dropdown:IconDefinition = faChevronDown;
 
-  constructor(private store: Store<{NewsFeed: any}>, private router: Router, private auth: AuthenticationService ) {
+  constructor(
+    private store: Store<{NewsFeed: any}>, 
+    private router: Router, 
+    private auth: AuthenticationService,
+    private ref: ApplicationRef 
+  ) { }
+
+  ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      if (res.state.params.category) 
-        this.selectedCategory = res.state.params.category;
-      else if (!this.selectedCategory)
-        this.selectedCategory = 'General'
+      if (res.state.params.category) this.selectedCategory = res.state.params.category;
+      else if (!this.selectedCategory) this.selectedCategory = 'General';
 
       this.selectedLanguage = res.state.params.language || 'en';
       if (res.state.queryParams.q)
         this.query.setValue(res.state.queryParams.q.split('-').join(' '));
     })
-    this.query.valueChanges
-    .pipe( debounce(() => timer(500)) )
-    .subscribe(query => {
-      const q = query.split(' ').join('-')
-      query !== '' ? this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q } }) : this.router.navigate([])
+    this.query.valueChanges.pipe( 
+      debounce(() => timer(500))
+    ).subscribe(query => {
+      const q = query.split(' ').join('-');
+      query !== '' ? this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q } }) : this.router.navigate([]);
     })
-  }
-
-  ngOnInit() {
-    
   }
 
   ngAfterViewInit() {
@@ -56,8 +57,8 @@ export class MainComponent implements OnInit {
   }
 
   EditProfile() {
-    this.router.navigate(['profile'])
-    this.showingProfile = false
+    this.router.navigate(['profile']);
+    this.showingProfile = false;
   }
 
   OpenNewsFeed() {
@@ -67,11 +68,13 @@ export class MainComponent implements OnInit {
   ChangeCategory = (category:string) => this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
 
   ShowProfile = () => {
-      this.showingProfile = true
+      this.showingProfile = true;
+      this.ref.tick()
   }
 
   HideProfile = () => {
-    this.showingProfile = false
+    this.showingProfile = false;
+    this.ref.tick();
   }
 
   SignOut = () => this.auth.SignOut()
