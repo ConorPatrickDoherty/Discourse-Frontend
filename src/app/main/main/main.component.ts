@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { debounce } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { RoutingService } from 'src/app/services/routing.service';
 
 @Component({
   selector: 'app-main',
@@ -17,8 +18,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 export class MainComponent implements OnInit {
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
   categories:string[] = CATEGORIES;
+
   selectedCategory: string;
-  selectedLanguage: string;
   query = new FormControl('');
   showingProfile:boolean = false;
 
@@ -28,26 +29,24 @@ export class MainComponent implements OnInit {
 
   constructor(
     private store: Store<{NewsFeed: any}>, 
-    private router: Router, 
+    private routingService: RoutingService,
     private auth: AuthenticationService,
     private ref: ApplicationRef 
   ) { }
 
   ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      if (res.state.params.category) this.selectedCategory = res.state.params.category;
-      else if (!this.selectedCategory) this.selectedCategory = 'General';
-
-      this.selectedLanguage = res.state.params.language || 'en';
-      if (res.state.queryParams.q)
-        this.query.setValue(res.state.queryParams.q.split('-').join(' '));
+      this.selectedCategory = res.state.params.category || 'General';
+      
+      if (res.state.queryParams.q) this.query.setValue(
+        res.state.queryParams.q.split('-').join(' ')
+      );  
     })
     this.query.valueChanges.pipe( 
       debounce(() => timer(500))
-    ).subscribe(query => {
-      const q = query.split(' ').join('-');
-      query !== '' ? this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q } }) : this.router.navigate([]);
-    })
+    ).subscribe(
+      query => this.routingService.ChangeQueryString(query.split(' ').join('-'))
+    )
   }
 
   ngAfterViewInit() {
@@ -57,15 +56,14 @@ export class MainComponent implements OnInit {
   }
 
   EditProfile() {
-    this.router.navigate(['profile']);
     this.showingProfile = false;
   }
 
-  OpenNewsFeed() {
-    this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${this.selectedCategory || 'General'}`], { queryParams: { q: this.query.value } })
-  }
+  OpenNewsFeed = () => this.routingService.Navigate();
+  
 
-  ChangeCategory = (category:string) => this.router.navigate([`newsfeed/${this.selectedLanguage || 'en'}/${category || 'General'}`], { queryParams: { q: this.query.value } })
+  ChangeCategory = (category:string) => this.routingService.ChangeCategory(category);
+  
 
   ShowProfile = () => {
       this.showingProfile = true;

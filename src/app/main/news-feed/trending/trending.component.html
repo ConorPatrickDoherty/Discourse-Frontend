@@ -2,10 +2,11 @@
     <mat-card>
         <h4>Trending</h4>
         <div class="thread-item" *ngFor="let thread of Threads">
-            <span>Thread Title </span>
+            <span>{{thread?.title}}</span>
             <div class="info-wrap">
-                <span>{{Thread?.replyCount}} comments</span><span>Score: {{Thread?.score}}</span>
+                <span>{{thread?.replyCount}} comments</span><span>Score: {{thread?.score}}</span>
             </div>
+            <hr>
         </div>
     </mat-card>
 </div>
