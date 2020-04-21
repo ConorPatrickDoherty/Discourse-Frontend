@@ -17,7 +17,7 @@ export class NewsApiService {
     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
       this.loading = true
       if (res.state.params) {
-        let url = `${this.apiRoot}category=${res.state.params.category}&language=${res.state.params.language}&apiKey=${NEWS_API_KEY}`
+        let url = `${this.apiRoot}category=${res.state.params.category}&country=${res.state.params.country}&apiKey=${NEWS_API_KEY}`
 
         if (res.state.queryParams.q) 
           url = url.concat(`&q=${res.state.queryParams.q.split('-').join('+')}`)              

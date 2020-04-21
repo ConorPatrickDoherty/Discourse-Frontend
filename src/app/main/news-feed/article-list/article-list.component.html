@@ -1,19 +1,14 @@
 <div class="filter">
-    <button mat-raised-button (click)="ViewFilters()">
-        Filters
-    </button>
-    <mat-card *ngIf="FilterBoxOpen" class="filter-box">
-        <mat-form-field color="accent">
-            <mat-label>Country</mat-label>
-            <input type="text" matInput [matAutocomplete]="auto" [formControl]="countryForm">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let country of countries" [value]="country.name">
-                    {{country.name}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </mat-card>
-    
+    <mat-form-field appearance="fill" color="accent">
+        <mat-label>Country</mat-label>
+        <mat-select name="food" [formControl]="Country" >
+          <mat-option *ngFor="let country of countries" id="country.code" [value]="country">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+        <!-- <mat-hint>{{c.value?.sound}}</mat-hint> -->
+      </mat-form-field>
+      
     <span >{{ArticlesResponse?.totalResults}} Results</span>
 </div>
 <div class="articles-container" *ngIf="!news.loading; else loading">
