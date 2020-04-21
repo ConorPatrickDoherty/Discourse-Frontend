@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { Thread } from 'src/app/interfaces/thread';
 import { ThreadService } from 'src/app/services/thread.service';
+import { IconDefinition, faComments, faExchangeAlt  } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trending',
@@ -10,13 +12,25 @@ import { ThreadService } from 'src/app/services/thread.service';
 export class TrendingComponent implements OnInit {
   Threads: Thread[];
 
-  constructor(private threads: ThreadService) { }
+  votes: IconDefinition = faExchangeAlt;
+  comments: IconDefinition = faComments;
+
+
+  constructor(
+    private ref: ApplicationRef,
+    private threads: ThreadService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.threads.GetThreads().subscribe(x => {
-      console.log(x)
       this.Threads = x;
+      this.ref.tick()
     })
+  }
+
+  OpenThread(thread:Thread) {
+    this.router.navigate([`thread/${thread.id}`])
   }
 
 }

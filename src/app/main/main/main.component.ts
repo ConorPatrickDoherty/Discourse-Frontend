@@ -1,8 +1,7 @@
-import { Component, OnInit, HostListener, ViewChild, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ApplicationRef } from '@angular/core';
 import { faUser, faChevronDown, faFeatherAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import { timer } from 'rxjs';
-import { Router } from '@angular/router';
 import { CATEGORIES } from '../../../assets/api-settings'
 import { FormControl } from '@angular/forms';
 import { debounce } from 'rxjs/operators';

@@ -1,13 +1,41 @@
 .trending-container {
     top: 200px;
     width: 350px;
+    max-height: 60vh;
     margin-left: 20px;
-    // position: fixed;
+    position: fixed;
 
-    .thread-info {
+    .thread-list {
+        padding-right: 5px;
+        height: 50vh;
+        overflow-y: scroll;
 
         .info-wrap {
+            padding-top: 5px;
             display: flex;
+            justify-content: space-between;
+
+            .source {
+                font-style: italic;
+            }
+
+            .detail {
+                padding-right: 10px;
+
+                fa-icon {
+                    padding-right: 5px;
+                }
+            }
         }
     }
+
+    
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #757575; 
+    border-radius: 2px;
 }

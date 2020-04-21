@@ -14,14 +14,15 @@ export class CommentFormComponent implements OnInit {
   @Output() refresh: EventEmitter<Comment[]> = new EventEmitter<Comment[]>()
   comment: FormControl = new FormControl('')
 
-  constructor(private comments: CommentService, private ref: ApplicationRef) { }
+  constructor(
+    private comments: CommentService
+  ) { }
 
   ngOnInit(): void {
   }
 
   Submit() {
     this.comments.CreateComment(this.comment.value, this.replyingToID).subscribe(x => {
-      console.log(x)
       this.refresh.emit(x)
     })
   }

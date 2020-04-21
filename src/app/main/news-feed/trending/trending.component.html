@@ -1,12 +1,18 @@
-<div class="trending-container">
-    <mat-card>
-        <h4>Trending</h4>
-        <div class="thread-item" *ngFor="let thread of Threads">
+<mat-card class="trending-container">
+    <h4>Trending</h4>
+    <div class="thread-list">
+        <div *ngFor="let thread of Threads" (click)="OpenThread(thread)">
+            <hr>
             <span>{{thread?.title}}</span>
             <div class="info-wrap">
-                <span>{{thread?.replyCount}} comments</span><span>Score: {{thread?.score}}</span>
+                <span class="source">
+                    {{thread.source.name}}
+                </span>
+                <span>
+                    <span class="detail"><fa-icon class="score" [icon]="votes" rotate="90"></fa-icon>{{thread?.score}}</span><span class="detail"><fa-icon [icon]="comments"></fa-icon>{{thread?.replyCount}}</span>
+                </span>
             </div>
-            <hr>
         </div>
-    </mat-card>
-</div>
+    </div>
+</mat-card>
+
