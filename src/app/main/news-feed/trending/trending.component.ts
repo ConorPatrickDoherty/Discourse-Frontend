@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./trending.component.scss']
 })
 export class TrendingComponent implements OnInit {
-  Threads: Thread[];
+  Threads: Thread[] = [];
+  Index:number = 0;
+  LoadFinished = false;
 
   votes: IconDefinition = faExchangeAlt;
   comments: IconDefinition = faComments;
@@ -23,14 +25,23 @@ export class TrendingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.threads.GetThreads().subscribe(x => {
-      this.Threads = x;
-      this.ref.tick()
-    })
+    this.LoadThreads()
   }
 
   OpenThread(thread:Thread) {
     this.router.navigate([`thread/${thread.id}`])
   }
 
+  LoadThreads(index?: number) {
+    let body:any = {}
+    if (index)  {
+      this.Index = this.Index + index;
+      body.index = this.Index;
+    }
+    this.threads.GetThreads(body).subscribe(x => {
+      this.Threads = this.Threads.concat(x);
+      if (x.length < 10) this.LoadFinished = true;
+      this.ref.tick()
+    })
+  }
 }

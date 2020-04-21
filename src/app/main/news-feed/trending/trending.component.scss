@@ -5,27 +5,41 @@
     margin-left: 20px;
     position: fixed;
 
+    .divider {
+        margin-bottom: 2px;
+    }
+
     .thread-list {
         padding-right: 5px;
         height: 50vh;
         overflow-y: scroll;
 
-        .info-wrap {
-            padding-top: 5px;
-            display: flex;
-            justify-content: space-between;
+        .thread-item {
+            cursor: pointer;
 
-            .source {
-                font-style: italic;
-            }
-
-            .detail {
-                padding-right: 10px;
-
-                fa-icon {
-                    padding-right: 5px;
+            .info-wrap {
+                padding-top: 5px;
+                display: flex;
+                justify-content: space-between;
+    
+                .source {
+                    font-style: italic;
+                }
+    
+                .detail {
+                    padding-right: 10px;
+    
+                    fa-icon {
+                        padding-right: 5px;
+                    }
                 }
             }
+        }
+
+        .button-wrap {
+            padding: 25px 0;
+            display: flex;
+            justify-content: center;
         }
     }
 
