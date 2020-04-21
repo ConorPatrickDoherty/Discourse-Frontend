@@ -11,7 +11,7 @@
       
     <span >{{ArticlesResponse?.totalResults}} Results</span>
 </div>
-<div class="articles-container" *ngIf="!news.loading; else loading">
+<div class="articles-container" *ngIf="ArticlesResponse; else loading">
     <app-article-item  *ngFor="let article of ArticlesResponse?.articles" [Article]="article"></app-article-item>
 </div>
 <ng-template #loading>

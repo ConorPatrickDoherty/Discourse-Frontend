@@ -1,4 +1,4 @@
-import { Component, OnInit, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NewsApiService } from 'src/app/services/news-api.service';
 import { NewsApiResponse } from 'src/app/interfaces/news-api-response';
 import { COUNTRY_CODES } from '../../../../assets/api-settings'
@@ -24,9 +24,10 @@ export class ArticleListComponent implements OnInit {
   countries:CountryOption[] = COUNTRY_CODES
 
   constructor(
+    private ref:ChangeDetectorRef,
     public news: NewsApiService,
     private store: Store<{NewsFeed: any}>,
-    private routingService: RoutingService
+    private routingService: RoutingService 
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,9 @@ export class ArticleListComponent implements OnInit {
             return i === s.findIndex((a) => (a.url === v.url)) && v.url
           })
         }
+        console.log('yo')
+        console.log(this.ArticlesResponse)
+        this.ref.detectChanges();
       }  
     })
     
