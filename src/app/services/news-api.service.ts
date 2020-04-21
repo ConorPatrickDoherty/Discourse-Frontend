@@ -4,31 +4,31 @@ import { NEWS_API_KEY } from '../../environments/environment'
 import { Observable, BehaviorSubject } from 'rxjs';
 import { NewsApiResponse } from '../interfaces/news-api-response';
 import { Store, select } from '@ngrx/store';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsApiService {
-  apiRoot:string = 'https://newsapi.org/v2/top-headlines?'
-  Articles:BehaviorSubject<NewsApiResponse> = new BehaviorSubject<NewsApiResponse>(null)
-  loading:boolean = false
+  apiRoot: string = 'https://newsapi.org/v2/top-headlines?'
+  Articles: BehaviorSubject<NewsApiResponse> = new BehaviorSubject<NewsApiResponse>(null)
 
-  constructor(private http: HttpClient, private store: Store<{NewsFeed: any}>) {
+  constructor(
+    private functions: AngularFireFunctions, 
+    private store: Store<{NewsFeed: any}>
+  ) {
     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
-      this.loading = true
       if (res.state.params) {
-        let url = `${this.apiRoot}category=${res.state.params.category}&language=${res.state.params.language}&apiKey=${NEWS_API_KEY}`
-
-        if (res.state.queryParams.q) 
-          url = url.concat(`&q=${res.state.queryParams.q.split('-').join('+')}`)              
-  
-        this.http.get<NewsApiResponse>(url).subscribe(
-          A => {
-             this.Articles.next(A)
-             return this.loading = false
-          }
-        )
+        let body = { ...res.state.params };
+        if (res.state.queryParams.q) body.query = res.state.queryParams.q  
+          
+        this._GetArticles(body).subscribe(x => {
+          this.Articles.next(x)
+        })
       }
     });
   }
+
+  private _GetArticles =  this.functions.httpsCallable('GetArticles')
+
 }

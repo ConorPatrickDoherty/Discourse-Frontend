@@ -1,0 +1,55 @@
+.trending-container {
+    top: 200px;
+    width: 350px;
+    max-height: 60vh;
+    margin-left: 20px;
+    position: fixed;
+
+    .divider {
+        margin-bottom: 2px;
+    }
+
+    .thread-list {
+        padding-right: 5px;
+        height: 50vh;
+        overflow-y: scroll;
+
+        .thread-item {
+            cursor: pointer;
+
+            .info-wrap {
+                padding-top: 5px;
+                display: flex;
+                justify-content: space-between;
+    
+                .source {
+                    font-style: italic;
+                }
+    
+                .detail {
+                    padding-right: 10px;
+    
+                    fa-icon {
+                        padding-right: 5px;
+                    }
+                }
+            }
+        }
+
+        .button-wrap {
+            padding: 25px 0;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #757575; 
+    border-radius: 2px;
+}

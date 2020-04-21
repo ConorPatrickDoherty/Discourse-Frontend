@@ -22,7 +22,7 @@
             <fa-icon [icon]="user"></fa-icon>
         </button>
         <mat-card class="profile" *ngIf="showingProfile">
-            <button mat-menu-item (click)="EditProfile()">Edit Profile</button>
+            <button mat-menu-item (click)="HideProfile()" [routerLink]="['/profile']">Edit Profile</button>
             <button mat-menu-item (click)="SignOut()">Sign Out</button>
         </mat-card>
     </div>

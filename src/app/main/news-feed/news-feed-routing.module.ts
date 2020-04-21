@@ -10,7 +10,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: ':category',
+    path: ':category/:page',
     component: NewsFeedComponent
   }
 ];

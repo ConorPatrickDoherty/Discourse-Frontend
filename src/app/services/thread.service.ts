@@ -17,6 +17,8 @@ export class ThreadService {
       if (res.routerReducer.state.params.threadId) {
         const body = { threadId: res.routerReducer.state.params.threadId }
         if (res.articleReducer.url != '') body['article'] = res.articleReducer
+        if (res.routerReducer.state.params.category) console.log('cat')
+        
 
         this.Thread = this._ViewThread(body).pipe(catchError(err => 
           err.code == 'not-found' ?  'Error getting thread' : 'Error creating new thread'
@@ -29,6 +31,11 @@ export class ThreadService {
     return this._CreateThread({article})
   }
 
+  GetThreads(body):Observable<Thread[]> {
+    return this._GetThreads(body);
+  }
+
   private _ViewThread =  this.functions.httpsCallable('ViewThread')
   private _CreateThread = this.functions.httpsCallable('CreateThread')
+  private _GetThreads = this.functions.httpsCallable('GetThreads')
 }

@@ -12,11 +12,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'newsfeed/en',
+        redirectTo: 'newsfeed/ie',
         pathMatch: 'full'
       },
       {
-        path: 'newsfeed/:language',
+        path: 'newsfeed/:country',
         loadChildren: () => import('./news-feed/news-feed.module').then(m => m.NewsFeedModule)
       },
       {
