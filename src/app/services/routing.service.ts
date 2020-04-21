@@ -9,6 +9,7 @@ export class RoutingService {
   selectedCategory: string;
   selectedCountry: string;
   query: string;
+  page: number;
 
   constructor(
     private router: Router, 
@@ -16,30 +17,39 @@ export class RoutingService {
   ) { 
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
       this.selectedCategory = res.state.params.category || 'General';
-      this.selectedCountry = res.state.params.country || 'ie'
+      this.selectedCountry = res.state.params.country || 'ie';
       
-      if (res.state.queryParams.q) this.query = res.state.queryParams.q.split('-').join(' ')
+      if (res.state.queryParams.q) this.query = res.state.queryParams.q.split('-').join(' ');
     })
   }
 
   ChangeQueryString(query: string) {
-    this.query = query
-    this.Navigate()
+    this.query = query;
+    this.page = 1;
+    this.Navigate();
   }
 
   Navigate() {
-    let queryParams = {}
+    
+    let queryParams = {};
     if (this.query && this.query.length) queryParams = { q: this.query }
-    this.router.navigate([`newsfeed/${this.selectedCountry || 'en'}/${this.selectedCategory || 'General'}`], { queryParams });
+    this.router.navigate([`newsfeed/${this.selectedCountry || 'en'}/${this.selectedCategory || 'General'}/${this.page || 1}`], { queryParams });
   }
   
   ChangeCountry(country: string) {
     this.selectedCountry = country;
-    this.Navigate()
+    this.page = 1;
+    this.Navigate();
   }
 
   ChangeCategory(category: string) {
-    this.selectedCategory = category
+    this.selectedCategory = category;
+    this.page = 1;
     this.Navigate()
+  }
+
+  ChangePage(page:number) {
+    this.page = page;
+    this.Navigate();
   }
 }

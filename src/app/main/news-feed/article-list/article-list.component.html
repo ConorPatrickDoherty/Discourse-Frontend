@@ -1,15 +1,25 @@
 <div class="filter">
+  <div class="filters">
     <mat-form-field appearance="fill" color="accent">
-        <mat-label>Country</mat-label>
-        <mat-select name="food" [formControl]="Country" >
-          <mat-option *ngFor="let country of countries" id="country.code" [value]="country">
-            {{country.name}}
-          </mat-option>
-        </mat-select>
-        <!-- <mat-hint>{{c.value?.sound}}</mat-hint> -->
-      </mat-form-field>
-      
-    <span >{{ArticlesResponse?.totalResults}} Results</span>
+      <mat-label>Country</mat-label>
+      <mat-select [formControl]="Country" >
+        <mat-option *ngFor="let country of countries" id="country.code" [value]="country">
+          {{country.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="page" appearance="fill" color="accent">
+      <mat-label>Page</mat-label>
+      <mat-select [formControl]="Page" >
+        <mat-option *ngFor="let page of pages" [value]="page">
+          {{ page }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="results">
+    <span>{{ArticlesResponse?.totalResults}} Results</span>
+  </div>
 </div>
 <div class="articles-container" *ngIf="ArticlesResponse; else loading">
     <app-article-item  *ngFor="let article of ArticlesResponse?.articles" [Article]="article"></app-article-item>

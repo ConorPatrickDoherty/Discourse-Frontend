@@ -16,9 +16,11 @@ import { RoutingService } from 'src/app/services/routing.service';
   styleUrls: ['./article-list.component.scss']
 })
 export class ArticleListComponent implements OnInit {
-  ArticlesResponse:NewsApiResponse;
+  ArticlesResponse: NewsApiResponse;
   FilterBoxOpen: boolean
-  Country = new FormControl({})
+  Country: FormControl = new FormControl({})
+  Page: FormControl = new FormControl("WHY")
+  pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   populated:boolean = false;
   
   countries:CountryOption[] = COUNTRY_CODES
@@ -33,8 +35,10 @@ export class ArticleListComponent implements OnInit {
   ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
       if (!this.populated) {
+        this.Page.setValue(+res.state.params.page)
         const country = COUNTRY_CODES.filter(x => x.code === res.state.params.country)[0];
         this.Country.setValue(country)
+        
         this.populated = true;
       }
     })
@@ -47,17 +51,17 @@ export class ArticleListComponent implements OnInit {
             return i === s.findIndex((a) => (a.url === v.url)) && v.url
           })
         }
-        console.log('yo')
-        console.log(this.ArticlesResponse)
+        this.pages = [1];
+        for (let i = 0; i < Math.ceil((res.totalResults - 20) / 20); i++) 
+          this.pages.push(i + 2);
+        
         this.ref.detectChanges();
       }  
     })
-    
     this.Country.valueChanges.subscribe(c => {
-      if (c) {
-        this.routingService.ChangeCountry(c.code)
-      }
+      this.routingService.ChangeCountry(c.code) 
     })
+    this.Page.valueChanges.subscribe(p => this.routingService.ChangePage(p))
   }
 
   ViewFilters() {
