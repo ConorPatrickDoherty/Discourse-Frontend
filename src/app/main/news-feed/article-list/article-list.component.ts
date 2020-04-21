@@ -39,7 +39,7 @@ export class ArticleListComponent implements OnInit {
         const country = COUNTRY_CODES.filter(x => x.code === res.state.params.country)[0];
         this.Country.setValue(country)
         
-        this.populated = true;
+        
       }
     })
     this.news.Articles.subscribe(res => {
@@ -54,8 +54,10 @@ export class ArticleListComponent implements OnInit {
         this.pages = [1];
         for (let i = 0; i < Math.ceil((res.totalResults - 20) / 20); i++) 
           this.pages.push(i + 2);
-        
+
+        if (this.populated) this.Page.setValue(+this.routingService.page)
         this.ref.detectChanges();
+        this.populated = true;
       }  
     })
     this.Country.valueChanges.subscribe(c => {
