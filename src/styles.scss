@@ -46,3 +46,8 @@ button:focus, button:active {
   outline: none !important;
   box-shadow: none;
 }
+
+.snackbar-error {
+  color: white;
+  background-color: #f44336;
+}

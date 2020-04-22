@@ -7,19 +7,13 @@
     flex-direction: column;
     justify-content: center;
 
-    fa-icon {
-        font-size: 5vh;
-        align-self: center;
-        width: fit-content;
-        margin-bottom: 4%;
-    }
-
     h1 {
         margin-bottom: 5%;
         font-weight: 200;
         margin: 0;
         color: #69f0ae;
         align-self: center;
+        text-align: center;
     }
 
     .heading {
@@ -41,6 +35,10 @@
             background-color: transparent !important;
         }
 
+        .hideButton {
+            transform: translateY(-9px);
+        }
+
         .form-button {
             font-size: 18px;
         }
@@ -56,3 +54,50 @@
     }
 }
 
+.loading-wrap {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
+    .loading {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .loading-header {
+            padding: 10% 40px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        
+            fa-icon {
+                font-size: 5vh;
+                margin-bottom: 4%;
+                align-self: center;
+                width: fit-content;
+            }
+        
+            h1 {
+                font-weight: 200;
+                margin: 0;
+                color: #69f0ae;
+            }
+
+            .spinner-wrap {
+                padding-top: 30px;
+            }
+        }    
+    }
+}
+
+
+::ng-deep .mat-form-field-subscript-wrapper {
+    margin: 0;
+    padding-top: 4px !important;
+}

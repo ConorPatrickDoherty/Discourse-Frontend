@@ -19,7 +19,7 @@ export class ArticleListComponent implements OnInit {
   ArticlesResponse: NewsApiResponse;
   FilterBoxOpen: boolean
   Country: FormControl = new FormControl({})
-  Page: FormControl = new FormControl("WHY")
+  Page: FormControl = new FormControl()
   pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   populated:boolean = false;
   
@@ -34,12 +34,10 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      if (!this.populated) {
+      if (!this.populated && res) {
         this.Page.setValue(+res.state.params.page)
         const country = COUNTRY_CODES.filter(x => x.code === res.state.params.country)[0];
         this.Country.setValue(country)
-        
-        
       }
     })
     this.news.Articles.subscribe(res => {

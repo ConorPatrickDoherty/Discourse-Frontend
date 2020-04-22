@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { MatCardModule } from '@angular/material/card';
 import { RegisterComponent } from './register/register.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthenticationModule { }
