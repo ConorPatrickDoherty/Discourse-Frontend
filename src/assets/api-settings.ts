@@ -1,11 +1,34 @@
-export const CATEGORIES: string[] = [
-    'General',
-    'Business',
-    'Entertainment',
-    'Health',
-    'Science',
-    'Sports',
-    'Technology'
+import { faMusic, faInfo, faUserTie, faHeartbeat, faFlask, faVolleyballBall, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+
+export const CATEGORIES = [
+    {
+        name: 'General',
+        icon: faInfo
+    },
+    {
+        name: 'Business',
+        icon: faUserTie
+    },
+    {
+        name: 'Entertainment',
+        icon: faMusic
+    },
+    {   
+        name: 'Health',
+        icon: faHeartbeat
+    },
+    {
+        name: 'Science',
+        icon: faFlask
+    },
+    {
+        name: 'Sports',
+        icon: faVolleyballBall
+    },
+    {
+        name: 'Technology',
+        icon: faLaptopCode
+    }
 ]
 
 export const COUNTRY_CODES = [

@@ -23,7 +23,7 @@ export class CustomSerializer implements fromRouter.RouterStateSerializer<Router
         }
 
         let params = {}
-        if (state.params.category && state.params.country)
+        if ((state.params.category && state.params.country) || state.params.threadId)
             params  = state.params;
             
         return { url, queryParams, params };

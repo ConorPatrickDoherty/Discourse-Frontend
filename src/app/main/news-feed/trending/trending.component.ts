@@ -30,7 +30,8 @@ export class TrendingComponent implements OnInit {
   }
 
   OpenThread(thread:Thread) {
-    this.router.navigate([`thread/${thread.id}`])
+    if (this.Threads.length)
+      this.router.navigate([`thread/${thread.id}`])
   }
 
   LoadThreads(index?: number) {

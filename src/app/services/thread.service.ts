@@ -14,6 +14,7 @@ export class ThreadService {
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').subscribe(res => {
+      console.log(res.routerReducer.state.params)
       if (res.routerReducer.state.params.threadId) {
         const body = { threadId: res.routerReducer.state.params.threadId }
         if (res.articleReducer.url != '') body['article'] = res.articleReducer
