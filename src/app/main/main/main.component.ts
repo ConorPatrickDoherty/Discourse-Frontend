@@ -73,7 +73,7 @@ export class MainComponent implements OnInit {
   
 
   ShowProfile = () => {
-    this.showingProfile = true;
+    this.showingProfile = !this.showingProfile;
     this.ref.tick()
   }
 

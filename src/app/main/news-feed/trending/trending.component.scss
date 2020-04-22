@@ -1,9 +1,5 @@
 .trending-container {
-    top: 200px;
-    width: 350px;
-    max-height: 60vh;
-    margin-left: 20px;
-    position: fixed;
+    
 
     .divider {
         margin-bottom: 2px;
@@ -87,4 +83,11 @@
 ::-webkit-scrollbar-thumb {
     background: #757575; 
     border-radius: 2px;
+}
+
+@media(max-width: 900px) {
+    .list-wrap {
+        height: 100% !important;
+        overflow-y: initial !important;
+    }
 }

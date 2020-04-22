@@ -8,5 +8,34 @@
 
     .trending-container {
         flex-basis: 40%;
+
+        .trending-fixed {
+            top: 200px;
+        width: 350px;
+        max-height: 60vh;
+        margin-left: 20px;
+        position: fixed;
+        }
+    }   
+}
+
+.mobile-feed-container {
+    display: none !important;
+}
+
+@media(max-width: 900px) {
+    .feed-container {
+        display: none;
+    }
+    .mobile-feed-container {
+        display: block !important;
+
+        .container-mobile {
+            padding: 0 20px;
+        }
+
+        .trending {
+            padding: 20px;
+        }
     }
 }

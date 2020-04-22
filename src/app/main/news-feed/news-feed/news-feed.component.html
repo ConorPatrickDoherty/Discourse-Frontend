@@ -3,6 +3,22 @@
         <app-article-list></app-article-list>
     </div>
     <div class="trending-container">
-        <app-trending></app-trending>
+        <div class="trending-fixed">
+            <app-trending></app-trending>
+        </div>
     </div>
+</div>
+<div class="mobile-feed-container">
+    <mat-tab-group color="accent" mat-align-tabs="center">
+        <mat-tab label="New Articles"> 
+            <div class="container-mobile">
+                <app-article-list></app-article-list>
+            </div>
+        </mat-tab>
+        <mat-tab label="Trending Threads"> 
+            <div class="container-mobile trending">
+                <app-trending></app-trending>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
 </div>
