@@ -8,6 +8,13 @@ mat-toolbar {
     align-items: center;   
     justify-content: space-evenly;
 
+    .category-icon {
+        width: 20px;
+        padding-right: 5px;
+        text-align: center;
+        display: inline-block;
+    }
+
     .title {
         cursor: pointer;
         display: flex;
@@ -29,7 +36,7 @@ mat-toolbar {
             text-align: left;
             position: relative;
 
-            fa-icon {
+            .dropdown {
                 position: absolute;
                 right: 15px;
             }
@@ -56,15 +63,52 @@ mat-toolbar {
         }
 
         .profile {
-            width: 200px;
-            padding: 5px 10px;
+            width: 300px;
+            padding: 20px 10px 5px;
             z-index: 10;
             right: 20px;
-            // transform: translateX(-28%);
             top: $toolbar-height;
             position: fixed;
-            
-            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .profile-info {
+                width: fit-content;
+
+                .display-picture-wrap {
+                    height: 200px;
+                    width: 200px;
+                    border-radius: 50%;
+                    border: 3px solid #6d6d6d;
+                    overflow: hidden;
+                    position: relative;
+                    align-self: center;
+        
+                    img {
+                        width: 100%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        position: absolute;
+                        pointer-events: none;
+                    }   
+                }   
+            }
+
+            .username {
+                font-size: 28px;
+            }
+
+            .button-row {
+                padding-top: 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                
+                button {
+                    text-align: center;
+                }
+            }
         }
     }
 }
@@ -87,9 +131,84 @@ mat-sidenav-container {
 
 ::ng-deep #cdk-overlay-0 {
     width: calc(22% + 15px);
+
+    .menu-item {
+        
+        .category-icon {
+            width: 20px;
+            padding-right: 5px;
+            text-align: center;
+            display: inline-block;
+        }
+    }
 }
 
 ::ng-deep.mat-menu-panel {
     max-width: none !important;
     width: 100%;
+}
+
+@media (max-width: 1000px) {
+    mat-toolbar {
+
+        .title {
+
+            h1 {
+                display: none;
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 800px) {
+    mat-toolbar {
+        justify-content: space-between;
+
+        .title {
+            display: none !important;
+        }
+    
+        .category-select {
+            flex-basis: unset !important;
+            width: 155px;
+        }
+    
+        .search-bar {
+            margin: 0 15px;
+            flex-basis: unset !important;
+            flex-grow: 1;
+        }
+    
+        .user-profile {
+            flex-basis: unset !important;
+            width: 50px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    ::ng-deep #cdk-overlay-0 {
+        width: 155px;
+    }
+
+    .profile {
+        width: 100% !important;
+        right: 0 !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .selected-category {
+        display: none !important;
+    }
+
+    .category-select {
+        width: 60px !important;
+    }
+
+    .search-bar {
+        flex-grow: unset;
+        width: 40vw;
+    }
 }

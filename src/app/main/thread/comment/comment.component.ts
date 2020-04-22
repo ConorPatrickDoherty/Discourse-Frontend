@@ -41,18 +41,20 @@ export class CommentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.select('profileReducer').subscribe(res => {
-      this.LoggedInEmail = res.email
-      if (res && res.email === this.Comment.user.email) {
-        this.canEdit = true;
-      }
-    })
-
-    this.LocalDate = moment.unix(this.Comment.createdAt._seconds);
-    this.voting.GetVote(this.Comment.id).subscribe((x) => {
-      this.CurrentVote = x
-      this.ref.tick()
-    })
+    if (this.Comment) {
+      this.store.select('profileReducer').subscribe(res => {
+        this.LoggedInEmail = res.email
+        if (res && (res.email === this.Comment.user.email || res.role === "Admin")) {
+          this.canEdit = true;
+        }
+      })
+  
+      this.LocalDate = moment.unix(this.Comment.createdAt._seconds);
+      this.voting.GetVote(this.Comment.id).subscribe((x) => {
+        this.CurrentVote = x
+        this.ref.tick()
+      })
+    } 
   }
 
   LoadChildren(): void {
@@ -67,6 +69,7 @@ export class CommentComponent implements OnInit {
 
   Reply() {
     if (!this.Comment.locked && !this.Comment.deleted) {
+      console.log('rep')
       return this.formOpen = !this.formOpen;
     } 
     const message = this.Comment.deleted ? 'has been deleted' : 'is locked' 

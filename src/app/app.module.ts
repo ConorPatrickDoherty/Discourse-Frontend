@@ -14,6 +14,7 @@ import { StoreModule} from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { authReducers, metaReducers } from './store';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { authReducers, metaReducers } from './store';
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production
-    })
+    }),
+    MatSnackBarModule
   ],
   providers: [
     AngularFireAuth,

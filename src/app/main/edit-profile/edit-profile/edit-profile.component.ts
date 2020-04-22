@@ -17,6 +17,7 @@ export class EditProfileComponent implements OnInit {
   UserDetails: FormGroup;
 
   isEditing:boolean = false;
+  isUpdating: boolean = false;
   hoverStyle:boolean = false;
   gotUser:boolean = false;
 
@@ -68,6 +69,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   UpdateProfile() {
+    this.isUpdating = true;
     this.auth.UpdateProfile(
       this.ImagePlaceholder, 
       this.UserDetails.get('username').value, 
@@ -78,6 +80,7 @@ export class EditProfileComponent implements OnInit {
         payload: this.User
       })
       this.User = x;
+      this.isUpdating = false;
       this.isEditing = false;
     })
   }

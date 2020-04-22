@@ -17,3 +17,20 @@
     }
 }  
 
+@media(max-width: 450px) {
+    .filter {
+        flex-direction: column;
+
+        .filters {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            mat-form-field {
+                min-width: 40px;
+                flex-basis: 60%;
+            }
+        }
+    }
+}

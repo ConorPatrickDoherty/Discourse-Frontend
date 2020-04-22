@@ -1,6 +1,6 @@
-<mat-card class="article-item-container" (click)="ViewArticle()">
-    <div class="article-content">
-        <div class="image-wrap" *ngIf="Article && Article.urlToImage">
+<mat-card class="article-item-container" [ngClass]="{'click': Article }" (click)="ViewArticle()">
+    <div class="article-content" *ngIf="Article; else loadingPage">
+        <div class="image-wrap" *ngIf="Article.urlToImage">
             <div class="fill-wrap">
                 <img class="image-fill" [src]="Article.urlToImage">
             </div>
@@ -12,3 +12,17 @@
         </div>
     </div>
 </mat-card> 
+
+<ng-template #loadingPage>
+    <div class="article-content">
+        <div class="image-wrap">
+            <div class="image-filler"></div>
+        </div>
+        <div class="markup">
+            <h5 class="title-loading"></h5>
+            <p class="content-loading">
+
+            </p>
+        </div>
+    </div>
+</ng-template>

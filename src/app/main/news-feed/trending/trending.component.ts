@@ -13,6 +13,7 @@ export class TrendingComponent implements OnInit {
   Threads: Thread[] = [];
   Index:number = 0;
   LoadFinished = false;
+  loadingThreadsArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]       
 
   votes: IconDefinition = faExchangeAlt;
   comments: IconDefinition = faComments;
@@ -29,7 +30,8 @@ export class TrendingComponent implements OnInit {
   }
 
   OpenThread(thread:Thread) {
-    this.router.navigate([`thread/${thread.id}`])
+    if (this.Threads.length)
+      this.router.navigate([`thread/${thread.id}`])
   }
 
   LoadThreads(index?: number) {

@@ -2,11 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NewsApiService } from 'src/app/services/news-api.service';
 import { NewsApiResponse } from 'src/app/interfaces/news-api-response';
 import { COUNTRY_CODES } from '../../../../assets/api-settings'
-import { Observable } from 'rxjs';
 import { CountryOption } from 'src/app/interfaces/country-option';
 import { FormControl } from '@angular/forms';
-import { startWith, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { RoutingService } from 'src/app/services/routing.service';
 
@@ -19,8 +16,9 @@ export class ArticleListComponent implements OnInit {
   ArticlesResponse: NewsApiResponse;
   FilterBoxOpen: boolean
   Country: FormControl = new FormControl({})
-  Page: FormControl = new FormControl("WHY")
+  Page: FormControl = new FormControl()
   pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  loadingArticlesArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]                                                                  
   populated:boolean = false;
   
   countries:CountryOption[] = COUNTRY_CODES
@@ -34,12 +32,10 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      if (!this.populated) {
+      if (!this.populated && res) {
         this.Page.setValue(+res.state.params.page)
         const country = COUNTRY_CODES.filter(x => x.code === res.state.params.country)[0];
         this.Country.setValue(country)
-        
-        
       }
     })
     this.news.Articles.subscribe(res => {

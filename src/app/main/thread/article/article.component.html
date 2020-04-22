@@ -1,8 +1,10 @@
-<mat-card>
-    <div class="image-wrap">
-        <img class="image-main" [src]="Thread?.urlToImage">
-    </div>
-    <h1 class="title">{{Thread.title}}</h1>
+<mat-card *ngIf="Thread; else loading">
+    <a [href]="Thread.url" target="_blank">
+        <div class="image-wrap">
+            <img class="image-main" [src]="Thread?.urlToImage">
+        </div>
+        <h1 class="title">{{Thread.title}}</h1>
+    </a>
     <span class="source">{{Thread.author}}, {{Thread.source.name}}</span>
     <div class="info-wrap">
         <span class="timestamp">{{ Thread.publishedAt.split('T')[0] }}</span>
@@ -24,3 +26,20 @@
     </div>
     <p>{{Thread.content}}</p>
 </mat-card>
+
+
+
+<ng-template #loading>
+    <mat-card>
+        <div class="image-wrap-loading">
+
+        </div>
+        <h1 class="title-loading"></h1>
+        <div class="source-loading"></div>
+        <div class="info-wrap">
+            <div class="timestamp-loading"></div>
+            <div class="details-loading"></div>
+        </div>
+        <div class="content-loading"></div>
+    </mat-card>
+</ng-template>

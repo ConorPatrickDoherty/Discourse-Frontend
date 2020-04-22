@@ -17,8 +17,10 @@ export class ArticleItemComponent implements OnInit {
   ngOnInit() {}
 
   ViewArticle() {
-    this.store.dispatch(articleAction({ payload: this.Article }))
-    if(this.Article.url.indexOf('www.') !== -1) this.router.navigate([`thread/${this.Article.url.split('www.')[1].split('/').join('-')}`])
-    else this.router.navigate([`thread/${this.Article.url.split('://')[1].split('/').join('-')}`])
+    if (this.Article) {
+      this.store.dispatch(articleAction({ payload: this.Article }))
+      if(this.Article.url.indexOf('www.') !== -1) this.router.navigate([`thread/${this.Article.url.split('www.')[1].split('/').join('-')}`])
+      else this.router.navigate([`thread/${this.Article.url.split('://')[1].split('/').join('-')}`])
+    }
   }
 }

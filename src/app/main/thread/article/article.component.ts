@@ -19,10 +19,12 @@ export class ArticleComponent implements OnInit {
   constructor(private ref: ApplicationRef, private voting: VoteService) { }
 
   ngOnInit(): void {
-    this.voting.GetVote(this.Thread.id).subscribe((x) => {
-      this.CurrentVote = x
-      this.ref.tick()
-    })
+    if (this.Thread) {
+      this.voting.GetVote(this.Thread.id).subscribe((x) => {
+        this.CurrentVote = x
+        this.ref.tick()
+      })
+    }
   }
 
   Vote(value:number): void {

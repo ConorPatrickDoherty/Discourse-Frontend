@@ -9,9 +9,13 @@ import { Comment } from '../../../interfaces/comment'
   styleUrls: ['./thread.component.scss']
 })
 export class ThreadComponent implements OnInit {
-  Thread: Thread 
+  Thread: Thread;
+  loadingCommentsArray: number[] = [1,2,3,4,5,6,7,8,9,10]
 
-  constructor(private threads: ThreadService, private ref: ApplicationRef) { }
+  constructor(
+    private threads: ThreadService, 
+    private ref: ApplicationRef
+  ) { }
 
   ngOnInit() {
     this.threads.Thread.subscribe(x => {

@@ -11,6 +11,7 @@ import { NgxFileHelpersModule } from 'ngx-file-helpers';
 import { FileDropDirective } from 'src/app/directives/file-drop.directive';
 import { EditProfileComponent } from '../edit-profile/edit-profile/edit-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ]
 })
 export class EditProfileModule { }

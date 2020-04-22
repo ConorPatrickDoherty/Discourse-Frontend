@@ -1,16 +1,24 @@
-<div class="login-container">
-  <fa-icon [icon]="logo"></fa-icon>
+<div class="login-container" *ngIf="!auth.loadingLogin; else isLoading">
+  <fa-icon class="logo" [icon]="logo"></fa-icon>
   <h1>Welcome Back</h1>
   <span>Enter your details to sign in</span>
   <form [formGroup]="credentials" (ngSubmit)="onSignIn()" class="form-container">
     <mat-form-field color="accent" appearance="fill" class="example-full-width">
       <mat-label>Email</mat-label>
       <input class="input-override" type="email" matInput formControlName="email">
+      <mat-error *ngIf="Email.invalid">{{ GetEmailErrorMessage() }}</mat-error>
     </mat-form-field>
   
     <mat-form-field color="accent" appearance="fill" class="example-full-width">
       <mat-label>Password</mat-label>
-      <input class="input-override" type="password" matInput formControlName="password">
+      <input class="input-override" [type]="hidden ? 'password' : 'text'" matInput formControlName="password">
+      <button class="hideButton" type="button" mat-icon-button matSuffix (click)="hidden = !hidden">
+        <fa-icon [icon]="hidePassword" *ngIf="hidden; else show"></fa-icon>
+        <ng-template #show>
+          <fa-icon [icon]="showPassword"></fa-icon>
+        </ng-template>
+      </button>
+      <mat-error *ngIf="Password.invalid">You must enter a value</mat-error>
     </mat-form-field>
 
     <button type="submit" class="form-button" mat-flat-button color="accent">Sign In</button>
@@ -18,3 +26,17 @@
   </form>
 </div>
 
+<ng-template #isLoading>
+  <div class="loading-wrap">
+    <div class="loading">
+      <div class="loading-header">
+        <fa-icon [icon]="logo"></fa-icon>
+        <h1>Signing in</h1>
+        You'll be redirected<br/>shortly
+        <div class="spinner-wrap">
+          <mat-spinner color="accent"></mat-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

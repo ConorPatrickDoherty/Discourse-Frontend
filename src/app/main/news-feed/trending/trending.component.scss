@@ -1,9 +1,5 @@
 .trending-container {
-    top: 200px;
-    width: 350px;
-    max-height: 60vh;
-    margin-left: 20px;
-    position: fixed;
+    
 
     .divider {
         margin-bottom: 2px;
@@ -11,8 +7,12 @@
 
     .thread-list {
         padding-right: 5px;
-        height: 50vh;
-        overflow-y: scroll;
+        
+
+        .list-wrap {
+            height: 50vh;
+            overflow-y: scroll;
+        }
 
         .thread-item {
             cursor: pointer;
@@ -33,7 +33,38 @@
                         padding-right: 5px;
                     }
                 }
+
+                
             }
+        }
+
+        .thread-item-loading {
+            min-height: 94px;
+            padding-right: 5px;
+            cursor: default;
+
+            .loading-title {
+                width: 100%;
+                min-height: 43px;
+                background-color: #6d6d6d;
+            }
+
+            .info-wrap {
+                min-height: 29px;
+                display: flex;
+
+                .loading-source {
+                    width: 40%;
+                    background-color: #6d6d6d;
+                }
+    
+                .loading-detail {
+                    width: 20%;
+                    background-color: #6d6d6d;
+                }
+            }
+
+            
         }
 
         .button-wrap {
@@ -52,4 +83,11 @@
 ::-webkit-scrollbar-thumb {
     background: #757575; 
     border-radius: 2px;
+}
+
+@media(max-width: 900px) {
+    .list-wrap {
+        height: 100% !important;
+        overflow-y: initial !important;
+    }
 }

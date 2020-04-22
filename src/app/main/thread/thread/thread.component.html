@@ -1,19 +1,29 @@
-<div class="thread-container" *ngIf="Thread">
+<div class="thread-container">
     <div class="article-container">
-        <app-article [Thread]="Thread"></app-article>
+        <app-article [Thread]="Thread" *ngIf="Thread; else loadingArticle"></app-article>
+        <ng-template #loadingArticle>
+            <app-article></app-article>
+        </ng-template>
     </div>
     <div class="comment-container">
         <div class="sort-bar">
             
         </div>
-        <div class="comment-section" >
+        <div class="comment-section" *ngIf="Thread && Thread?.comments; else loadingComments">
             <div *ngFor="let comment of Thread?.comments">
                 <app-comment [Comment]="comment"></app-comment>
             </div>
         </div>
+        <ng-template #loadingComments>
+            <div class="comment-section">
+                <div *ngFor="let comment of loadingCommentsArray">
+                    <app-comment></app-comment>
+                </div>
+            </div>
+        </ng-template>
         <div class="comment-form">
-            <mat-card>
-                <app-comment-form [replyingToID]="Thread.id" (refresh)="refreshComments($event)"></app-comment-form>
+            <mat-card *ngIf="Thread">
+                <app-comment-form [replyingToID]="Thread?.id" (refresh)="refreshComments($event)"></app-comment-form>
             </mat-card>
         </div>
     </div>

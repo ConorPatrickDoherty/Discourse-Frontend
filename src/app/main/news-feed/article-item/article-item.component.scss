@@ -1,9 +1,10 @@
 $image-dimensions: 140px;
 
 .article-item-container {
+    min-height: 190px;
     width: 100%;
     margin-bottom: 20px;
-    cursor: pointer;
+    
     
     .article-content {
         display: flex;
@@ -11,7 +12,6 @@ $image-dimensions: 140px;
         .image-wrap {
             height: $image-dimensions;
             min-width: $image-dimensions;
-            border-radius: 10px;
             margin-right: 20px;
             position: relative;
             overflow: hidden;
@@ -38,11 +38,66 @@ $image-dimensions: 140px;
             }
         }
 
+        .image-filler {
+            height: 100%;
+            width: 100%;
+            background-color: #6d6d6d;
+        }
+
         .markup {
             height: fit-content;
+            width: 70%;
 
             .content {
                 font-size: 14px;
+            }
+
+            .title-loading {
+                min-height: 48px;
+                width: 100%;
+                background-color: #6d6d6d;
+            }
+
+            .content-loading {
+                min-height: 84px;
+                width: 100%;
+                background-color: #6d6d6d;
+            }
+        }
+    }
+}
+
+.click {
+    cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .article-content {
+        display: block !important;
+
+        .image-filler {
+            height: 200px !important;
+            width: 100% !important;
+            background-color: #6d6d6d;
+        }
+
+        .image-wrap {
+            min-height: 200px;
+            margin-right: 0 !important;
+            height: unset !important;
+
+            .image-main {
+                border-radius: 5px;
+                width: 100% !important;
+            }
+        }
+
+        .markup {
+            width: 100% !important;
+            padding-top: 10px;
+
+            .title-loading {
+                width: 70% !important;
             }
         }
     }

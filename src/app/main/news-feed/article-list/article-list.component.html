@@ -22,8 +22,8 @@
   </div>
 </div>
 <div class="articles-container" *ngIf="ArticlesResponse; else loading">
-    <app-article-item  *ngFor="let article of ArticlesResponse?.articles" [Article]="article"></app-article-item>
+  <app-article-item  *ngFor="let article of ArticlesResponse?.articles" [Article]="article"></app-article-item>
 </div>
 <ng-template #loading>
-    <h1>Loading...</h1>
+  <app-article-item *ngFor="let a of loadingArticlesArray"></app-article-item>
 </ng-template>

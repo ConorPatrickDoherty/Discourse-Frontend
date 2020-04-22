@@ -1,5 +1,6 @@
 .comment-wrap {
     padding: 5px 10px 8px 0;
+    
     .details {
         font-size: 12px;
         display: block;
@@ -9,14 +10,31 @@
     .body {
         display: flex;
 
+        .c-loading {
+            margin-left: 50px;
+        }
+
         .content {
             flex-grow: 1;
             font-size: 14px;
             max-width: 85%;
             position: relative;
+            overflow-wrap: anywhere;
 
             .is-user {
                 color: #69f0ae;
+            }
+
+            .content-loading {
+                height: 21px;
+                background-color: #6d6d6d;
+            }
+            
+            .details-loading {
+                width: 140px;
+                margin: 3px 0;
+                height: 18px;
+                background-color: #6d6d6d;
             }
         }
 
@@ -74,6 +92,14 @@
     .disabled-reply {
         color: gray;
     }
+
+    .text-link-loading {
+        height: 12px;
+        width: 200px;
+        margin-top: 2px;
+        display: inline-block;
+        background-color: #6d6d6d;
+    }
 }
 
 .form-wrap {
@@ -108,4 +134,8 @@
     fa-icon {
         padding: 0 10px 0 0;
     }
+}
+
+.comment-container-loading {
+    height: 116px;
 }
