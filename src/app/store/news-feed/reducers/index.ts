@@ -21,7 +21,11 @@ export class CustomSerializer implements fromRouter.RouterStateSerializer<Router
         while (state.firstChild) {
             state = state.firstChild
         }
-        const { params } = state;
+
+        let params = {}
+        if (state.params.category && state.params.country)
+            params  = state.params;
+            
         return { url, queryParams, params };
     }
 }

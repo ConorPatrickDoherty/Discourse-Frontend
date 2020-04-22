@@ -18,7 +18,7 @@ export class NewsApiService {
     private store: Store<{NewsFeed: any}>
   ) {
     this.store.select('NewsFeed').pipe(select("routerReducer")).subscribe(res => {
-      if (res.state.params) {
+      if (res.state.params.category && res.state.params.country) {
         let body = { ...res.state.params };
         if (res.state.queryParams.q) body.query = res.state.queryParams.q  
           

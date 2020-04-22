@@ -68,6 +68,9 @@ export class AuthenticationService {
           displayPicture: ''
         }
       })
+      // this.store.dispatch({
+      //   type: ''
+      // })
     })
   } 
 

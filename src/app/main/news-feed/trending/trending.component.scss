@@ -11,8 +11,12 @@
 
     .thread-list {
         padding-right: 5px;
-        height: 50vh;
-        overflow-y: scroll;
+        
+
+        .list-wrap {
+            height: 50vh;
+            overflow-y: scroll;
+        }
 
         .thread-item {
             cursor: pointer;
@@ -33,7 +37,37 @@
                         padding-right: 5px;
                     }
                 }
+
+                
             }
+        }
+
+        .thread-item-loading {
+            min-height: 94px;
+            padding-right: 5px;
+
+            .loading-title {
+                width: 100%;
+                min-height: 43px;
+                background-color: #6d6d6d;
+            }
+
+            .info-wrap {
+                min-height: 29px;
+                display: flex;
+
+                .loading-source {
+                    width: 40%;
+                    background-color: #6d6d6d;
+                }
+    
+                .loading-detail {
+                    width: 20%;
+                    background-color: #6d6d6d;
+                }
+            }
+
+            
         }
 
         .button-wrap {

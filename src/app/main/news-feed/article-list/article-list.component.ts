@@ -2,11 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NewsApiService } from 'src/app/services/news-api.service';
 import { NewsApiResponse } from 'src/app/interfaces/news-api-response';
 import { COUNTRY_CODES } from '../../../../assets/api-settings'
-import { Observable } from 'rxjs';
 import { CountryOption } from 'src/app/interfaces/country-option';
 import { FormControl } from '@angular/forms';
-import { startWith, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { RoutingService } from 'src/app/services/routing.service';
 
@@ -21,6 +18,7 @@ export class ArticleListComponent implements OnInit {
   Country: FormControl = new FormControl({})
   Page: FormControl = new FormControl()
   pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  loadingArticlesArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]                                                                  
   populated:boolean = false;
   
   countries:CountryOption[] = COUNTRY_CODES
