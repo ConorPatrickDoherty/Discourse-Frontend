@@ -22,12 +22,14 @@
         flex-direction: column;
 
         .filters {
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
 
             mat-form-field {
-                width: 40% !important;
+                min-width: 40px;
+                flex-basis: 60%;
             }
         }
     }

@@ -5,8 +5,9 @@
     align-items: center;
 
     mat-card {
-        width: fit-content;
         padding: 20px 20px 40px;
+        width: fit-content;
+        overflow-wrap: break-word;
 
         .top-row {
             display: flex;
@@ -30,44 +31,56 @@
             display: flex;
             flex-direction: row;
 
-            .display-picture-wrap {
-                height: 250px;
-                width: 250px;
-                border-radius: 50%;
-                border: 3px solid gray;
-                overflow: hidden;
-                position: relative;
-                align-self: center;
+            .picture {
+                display: flex;
+                flex-direction: column;
+
+                .display-picture-wrap {
+                    height: 250px;
+                    width: 250px;
+                    border-radius: 50%;
+                    border: 3px solid gray;
+                    overflow: hidden;
+                    position: relative;
+                    align-self: center;
+        
+                    img {
+                        width: 100%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        position: absolute;
+                        pointer-events: none;
+                    }   
+        
+                    .hovered {
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        position: absolute;
+                        pointer-events: none;
+                    }
+        
+                    .display {
+                        color: gray;
+                    }
     
-                img {
-                    width: 100%;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    position: absolute;
-                    pointer-events: none;
-                }   
-    
-                .hovered {
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    position: absolute;
-                    pointer-events: none;
-                }
-    
-                .display {
-                    color: gray;
+                    .image-placeholder {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        position: absolute;
+                        pointer-events: none;
+                    }
                 }
 
-                .image-placeholder {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    position: absolute;
-                    pointer-events: none;
+                .image-text {
+                    display: none;
+                    text-align: center;
                 }
             }
+
+            
     
             .edit-image {
                 right: 80px;
@@ -102,6 +115,47 @@
                     font-size: 18px;
                     display: block;
                 }
+            }
+        }
+
+        .darken {
+            filter: brightness(50%);
+        }
+
+        .updating-wrap {
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                position: absolute;
+                justify-content: center;
+                align-items: center;
+
+                .updating {
+                    z-index: 1000;
+                    height: fit-content;
+                }
+            }
+    }
+}
+
+@media (max-width: 700px) {
+    mat-card {
+        width: 100% !important;
+
+        .profile-container {
+            flex-direction: column !important;
+    
+            .info-wrap {
+                width: 100% !important;
+                padding: 20px 20px 40px !important;
+                align-self: initial !important;
+                height: fit-content !important;
+            }
+    
+            .image-text {
+                display: inline !important;
             }
         }
     }
