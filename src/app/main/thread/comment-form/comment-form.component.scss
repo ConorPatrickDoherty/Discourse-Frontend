@@ -2,13 +2,9 @@
     display: flex;
 
     mat-form-field {
-        flex-grow: 1;
+        width: Calc(100% - 80px);;
         font-size: 14px;
         display: inline-block;
-
-        textarea {
-
-        }    
     }
 
     .button-wrap {

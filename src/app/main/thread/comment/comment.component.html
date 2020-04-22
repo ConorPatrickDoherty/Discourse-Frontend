@@ -1,66 +1,88 @@
-<mat-card class="comment-wrap">
-    <div class="body">
-        <div class="vote">
-            <div class="vote-icon-wrap">
-                <div class="vote-icon" [ngClass]="{ 'upvoted': CurrentVote.value === 1 }" *ngIf="CurrentVote" >
-                    <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+<div class="comment-container" *ngIf="Comment; else loadingComment">
+    <mat-card class="comment-wrap">
+        <div class="body">
+            <div class="vote">
+                <div class="vote-icon-wrap">
+                    <div class="vote-icon" [ngClass]="{ 'upvoted': CurrentVote.value === 1 }" *ngIf="CurrentVote" >
+                        <fa-icon [icon]="voteUp" (click)="Vote(1)"></fa-icon>
+                    </div>
+                </div>
+                <div>{{Comment.score}}</div>
+                <div class="vote-icon-wrap">
+                    <div class="vote-icon" [ngClass]="{ 'downvoted': CurrentVote.value === -1 }" *ngIf="CurrentVote">
+                        <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
+                    </div>
                 </div>
             </div>
-            <div>{{Comment.score}}</div>
-            <div class="vote-icon-wrap">
-                <div class="vote-icon" [ngClass]="{ 'downvoted': CurrentVote.value === -1 }" *ngIf="CurrentVote">
-                    <fa-icon [icon]="voteDown" (click)="Vote(-1)"></fa-icon>
+            <div class="content">
+                <span class="details" [ngClass]="{ 'is-user': Comment.user.email === LoggedInEmail }">{{Comment.user.username}}</span>
+                <p>{{Comment.content}}</p>
+                <div class="details">
+                    {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
+                    <span></span>
                 </div>
             </div>
-        </div>
-        <div class="content">
-            <span class="details" [ngClass]="{ 'is-user': Comment.user.email === LoggedInEmail }">{{Comment.user.username}}</span>
-            <p>{{Comment.content}}</p>
-            <div class="details">
-                {{LocalDate.format('MM-DD-YYYY')}} | {{LocalDate.fromNow()}}
-                <span></span>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button mat-mini-fab disabled *ngIf="Comment.deleted; else locked">
-                <fa-icon [icon]="trash" ></fa-icon>
-            </button>
-            <ng-template #locked>
-                <button mat-mini-fab disabled *ngIf="Comment.locked && !canEdit; else edit">
-                    <fa-icon [icon]="lock" ></fa-icon>
+            <div class="menu-container">
+                <button mat-mini-fab disabled *ngIf="Comment.deleted; else locked">
+                    <fa-icon [icon]="trash" ></fa-icon>
                 </button>
-                <ng-template #edit>
-                    <button *ngIf="canEdit" class="menu-button" mat-icon-button [matMenuTriggerFor]="commentMenu">
-                        <fa-icon [icon]="menu"></fa-icon>
+                <ng-template #locked>
+                    <button mat-mini-fab disabled *ngIf="Comment.locked && !canEdit; else edit">
+                        <fa-icon [icon]="lock" ></fa-icon>
                     </button>
-                    <mat-menu class="menu" #commentMenu xPosition="before">
-                        <button mat-menu-item (click)="Delete()"><fa-icon [icon]="trash"></fa-icon>Delete</button>
-                        <button mat-menu-item [disabled]="Comment.locked" (click)="Lock()"><fa-icon [icon]="lock"></fa-icon>Lock</button>
-                    </mat-menu>
+                    <ng-template #edit>
+                        <button *ngIf="canEdit" class="menu-button" mat-icon-button [matMenuTriggerFor]="commentMenu">
+                            <fa-icon [icon]="menu"></fa-icon>
+                        </button>
+                        <mat-menu class="menu" #commentMenu xPosition="before">
+                            <button mat-menu-item (click)="Delete()"><fa-icon [icon]="trash"></fa-icon>Delete</button>
+                            <button mat-menu-item [disabled]="Comment.locked" (click)="Lock()"><fa-icon [icon]="lock"></fa-icon>Lock</button>
+                        </mat-menu>
+                    </ng-template>
                 </ng-template>
-            </ng-template>
+            </div>
         </div>
-    </div>
-</mat-card>
-<div class="link-row">
-    <div class="text-link" (click)="LoadChildren()" *ngIf="Comment.replyCount">
-        <fa-icon [icon]="openComment"></fa-icon>
-        <span *ngIf="Comment.replyCount > 1; else singleReply"> {{repliesOpen ? 'Hide' : 'View'}} all {{Comment.replyCount}} replies</span>
-        <ng-template #singleReply><span>{{repliesOpen ? 'Hide' : 'View'}} 1 reply</span></ng-template>
-    </div>
-    <div class="text-link" [ngClass]="{ 'disabled-reply' : Comment.locked }" (click)="Reply()">
-        <fa-icon [icon]="reply"></fa-icon>
-        <span>Reply</span>
+    </mat-card>
+    <div class="link-row">
+        <div class="text-link" (click)="LoadChildren()" *ngIf="Comment.replyCount">
+            <fa-icon [icon]="openComment"></fa-icon>
+            <span *ngIf="Comment.replyCount > 1; else singleReply"> {{repliesOpen ? 'Hide' : 'View'}} all {{Comment.replyCount}} replies</span>
+            <ng-template #singleReply><span>{{repliesOpen ? 'Hide' : 'View'}} 1 reply</span></ng-template>
+        </div>
+        <div class="text-link" [ngClass]="{ 'disabled-reply' : Comment.locked }" (click)="Reply()">
+            <fa-icon [icon]="reply"></fa-icon>
+            <span>Reply</span>
+        </div>
     </div>
 </div>
-<div class="form-wrap" *ngIf="formOpen">
+
+<ng-template #loadingComment>
+    <div class="comment-container-loading">
+        <mat-card class="comment-wrap">
+            <div class="body">
+                <div class="content c-loading">
+                    <div class="details-loading"></div>
+                    <p class="content-loading"></p>
+                    <div class="details-loading"></div>
+                </div>
+            </div>
+        </mat-card>
+        <div class="link-row">
+            <div class="text-link-loading"></div>
+        </div>
+    </div>
+</ng-template>
+
+<div class="form-wrap" *ngIf="formOpen && Comment">
     <mat-card>
         <app-comment-form [replyingToID]="Comment.id" (refresh)="Reload($event)"></app-comment-form>
     </mat-card>
 </div>
-<div class="replies-container" *ngIf="repliesOpen">
+<div class="replies-container" *ngIf="repliesOpen && Comment">
     <div class="rule"><div class="rule-content"></div></div>
     <div class="reply" *ngFor="let comment of Replies">
         <app-comment [Comment]="comment"></app-comment>
     </div>
 </div>
+
+

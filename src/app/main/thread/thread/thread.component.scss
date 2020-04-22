@@ -33,3 +33,31 @@ $image-dimensions: 30vw;
     }
 }
 
+@media(max-width: 1200px) {
+    .thread-container {
+        height: unset !important;
+        flex-direction: column; 
+
+        .article-container {
+            width: 100%;
+            flex-basis: unset !important;
+        }
+
+        .comment-container {
+            width: 100%;
+            margin: 0 !important;
+            padding: 20px !important;
+            flex-basis: unset !important;
+
+            .comment-section {
+                margin: 20px 0 25vh !important;
+            }
+
+            .comment-form {
+                left: 0;
+                padding: 4px 20px;
+                width: 100% !important;
+            }
+        }
+    }
+}
