@@ -7,7 +7,7 @@
     </a>
     <span class="source">{{Thread.author}}, {{Thread.source.name}}</span>
     <div class="info-wrap">
-        <span class="timestamp">{{ Thread.publishedAt.split('T')[0] }}</span>
+        <span class="timestamp">{{ Timestamp }}</span>
         <span class="details">
             <span class="vote">
                 <div class="vote-icon" [ngClass]="{'upvoted': CurrentVote.value === 1}" *ngIf="CurrentVote" >

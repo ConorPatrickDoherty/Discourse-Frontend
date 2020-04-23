@@ -6,6 +6,10 @@
         </ng-template>
     </div>
     <div class="comment-container">
+        <div class="no-comments" *ngIf="Thread || Thread?.comments.length === 0">
+            <h1>Nothing yet.</h1>
+            <h3>Be the first to comment.</h3>
+        </div>
         <div class="sort-bar">
             
         </div>

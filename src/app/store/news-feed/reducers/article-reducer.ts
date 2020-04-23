@@ -11,7 +11,10 @@ const initialState:Article = {
     author: '',
     title: '',
     description: '',
-    publishedAt: '',
+    publishedAt: {
+        _nanoSeconds: 0,
+        _seconds: 0
+    },
     url: '',
     urlToImage: '',
     content: ''

@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatButtonModule,
     FontAwesomeModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ]
 })
 export class NewsFeedModule { }

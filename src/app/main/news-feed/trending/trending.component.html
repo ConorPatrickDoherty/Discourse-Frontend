@@ -1,5 +1,42 @@
+<div class="title-container">
+    <h3>Trending</h3> 
+    <div class="toggle-wrap">
+        <span>
+            Filters 
+        </span>
+        <mat-slide-toggle (change)="ToggleFilters()"></mat-slide-toggle>
+    </div>
+</div>
+<div class="heading-container" *ngIf="showFilters">
+    <mat-form-field appearance="fill" color="accent">
+        <mat-label>Sort by</mat-label>
+        <mat-select [formControl]="SortField" >
+          <mat-option value="replyCount">
+            Replies
+          </mat-option>
+          <mat-option value="score">
+            Votes
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="accent">
+        <mat-label>Sort from</mat-label>
+        <mat-select [formControl]="SortRange" >
+            <mat-option value="week">
+            This Week
+            </mat-option>
+            <mat-option value="month">
+            This Month
+            </mat-option>
+            <mat-option value="all">
+            All time
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
 <mat-card class="trending-container">
-    <h3>Trending</h3>
+
     <hr class="divider">
     <div class="thread-list">
         <div class="list-wrap" *ngIf="Threads.length; else loadingPage">
@@ -16,7 +53,7 @@
                 <hr>
             </div>
             <div class="button-wrap" *ngIf="Threads && !LoadFinished">
-                <button class="load-more" mat-flat-button color="accent" (click)="LoadThreads(10)">Load More</button>
+                <button class="load-more" mat-flat-button color="accent" (click)="LoadThreads(true)">Load More</button>
             </div>
         </div>
         <ng-template #loadingPage>

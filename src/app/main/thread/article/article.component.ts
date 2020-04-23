@@ -3,6 +3,7 @@ import { faComments, IconDefinition, faArrowUp, faArrowDown } from '@fortawesome
 import { Thread } from 'src/app/interfaces/thread';
 import { Vote, VoteValue } from 'src/app/interfaces/vote';
 import { VoteService } from 'src/app/services/vote.service';
+import * as Moment from 'moment'
 
 @Component({
   selector: 'app-article',
@@ -13,6 +14,8 @@ export class ArticleComponent implements OnInit {
   @Input() Thread: Thread;
   Comment:IconDefinition = faComments;
   CurrentVote: Vote;
+  Timestamp: string;
+
   VoteUp: IconDefinition = faArrowUp;
   VoteDown: IconDefinition = faArrowDown;
 
@@ -24,6 +27,7 @@ export class ArticleComponent implements OnInit {
         this.CurrentVote = x
         this.ref.tick()
       })
+      this.Timestamp = Moment(this.Thread.publishedAt._nanoSeconds).format("DD MMM YYYY")
     }
   }
 

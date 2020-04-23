@@ -10,6 +10,9 @@ export interface Article {
     description: string,
     url: string,
     urlToImage: string,
-    publishedAt: string,
+    publishedAt: {
+        _seconds: number;
+        _nanoSeconds: number;
+    },
     content: string
 }
