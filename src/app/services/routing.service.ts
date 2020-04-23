@@ -32,7 +32,6 @@ export class RoutingService {
   }
 
   Navigate() {
-    
     let queryParams = {};
     if (this.query && this.query.length) queryParams = { q: this.query }
     this.router.navigate([`newsfeed/${this.selectedCountry || 'en'}/${this.selectedCategory || 'General'}/${this.page || 1}`], { queryParams });

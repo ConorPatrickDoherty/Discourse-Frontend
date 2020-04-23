@@ -17,12 +17,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CommentComponent implements OnInit {
   @Input() Comment: Comment;
   Replies: Comment[] = [];
+  loadingCommentsArray: number[] = []
   CurrentVote: Vote;
   LocalDate: moment.Moment;
   LoggedInEmail: string;
+
   canEdit:boolean = false;
   formOpen:boolean = false;
   repliesOpen: boolean = false;
+  loadingReplies: boolean = false;
 
   openComment: IconDefinition = faChevronDown;
   voteUp: IconDefinition = faArrowUp;
@@ -42,6 +45,9 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.Comment) {
+      for (let i = 0; i < this.Comment.replyCount; i++) {
+        this.loadingCommentsArray.push(i);
+      }
       this.store.select('profileReducer').subscribe(res => {
         this.LoggedInEmail = res.email
         if (res && (res.email === this.Comment.user.email || res.role === "Admin")) {
@@ -59,9 +65,11 @@ export class CommentComponent implements OnInit {
 
   LoadChildren(): void {
     this.repliesOpen = !this.repliesOpen;
+    this.loadingReplies = true;
     if (this.repliesOpen) {
       this.comments.GetComments(this.Comment.id).subscribe(x => {
         this.Replies = x;
+        this.loadingReplies = false;
         this.ref.tick()
       })
     }

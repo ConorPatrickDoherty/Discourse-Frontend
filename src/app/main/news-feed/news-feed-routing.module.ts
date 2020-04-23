@@ -6,7 +6,12 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'General',
+    redirectTo: 'General/1',
+    pathMatch: 'full'
+  },
+  {
+    path: ':category',
+    redirectTo: 'General/1',
     pathMatch: 'full'
   },
   {

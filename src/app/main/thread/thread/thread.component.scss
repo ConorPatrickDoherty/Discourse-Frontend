@@ -55,7 +55,9 @@ $image-dimensions: 30vw;
 
             .comment-form {
                 left: 0;
-                padding: 4px 20px;
+                bottom: 0;
+                right: 0;
+                padding: 4px 0 0;
                 width: 100% !important;
             }
         }

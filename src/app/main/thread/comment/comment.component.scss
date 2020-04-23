@@ -11,7 +11,7 @@
         display: flex;
 
         .c-loading {
-            margin-left: 50px;
+            margin-left: 40px;
         }
 
         .content {
@@ -102,19 +102,10 @@
     }
 }
 
-.form-wrap {
-    margin: 5px 0 5px 20px;
 
-    mat-card {
-        padding: 5px 10px 0;
-        margin-bottom: 25px;
-    }
-}
-
-.replies-container {
-    padding-left: 20px;
+.sub-comments-container {
     position: relative;
-
+    
     .rule {
         top: -10px;
         left: 5px;
@@ -128,7 +119,22 @@
             background-color: gray;
         }
     }
+
+    .form-wrap {
+        margin: 5px 0 5px 20px;
+    
+        mat-card {
+            padding: 5px 10px 0;
+            margin-bottom: 25px;
+        }
+    }
+    
+    .replies-container {
+        padding-left: 20px;
+        position: relative;
+    }
 }
+
 
 ::ng-deep.mat-menu-item {
     fa-icon {
@@ -138,4 +144,12 @@
 
 .comment-container-loading {
     height: 116px;
+
+    .comment-wrap {
+        height: 86px;
+
+        p {
+            margin-bottom: 10px;
+        }
+    }
 }
