@@ -16,10 +16,12 @@ export class RoutingService {
     private store: Store<{NewsFeed: any}> 
   ) { 
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      this.selectedCategory = res.state.params.category || 'General';
-      this.selectedCountry = res.state.params.country || 'ie';
-
-      if (res.state.queryParams.q) this.query = res.state.queryParams.q.split('-').join(' ');
+      if (res) {
+        this.selectedCategory = res.state.params.category || 'General';
+        this.selectedCountry = res.state.params.country || 'ie';
+  
+        if (res.state.queryParams.q) this.query = res.state.queryParams.q.split('-').join(' ');
+      }
     })
   }
 

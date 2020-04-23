@@ -12,11 +12,13 @@ export class CommentService {
   RootID:string;
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) { 
-    this.store.select('NewsFeed').subscribe(res => {
-      if (res.routerReducer.state.params.threadId) {
-        this.RootID = res.routerReducer.state.params.threadId
-      }
-    })
+    if (this.store) {
+      this.store.select('NewsFeed').subscribe(res => {
+        if (res && res.routerReducer.state.params.threadId) {
+          this.RootID = res.routerReducer.state.params.threadId
+        }
+      })
+    }
   }
 
   CreateComment(comment:string, parentId: string):Observable<Comment[]> {

@@ -41,8 +41,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
-      if (res.state.params.category) this.selectedCategory = CATEGORIES.filter(x => x.name === res.state.params.category)[0];
-      if (res.state.queryParams.q) this.query.setValue(
+      if (res && res.state.params.category) this.selectedCategory = CATEGORIES.filter(x => x.name === res.state.params.category)[0];
+      if (res && res.state.queryParams.q) this.query.setValue(
         res.state.queryParams.q.split('-').join(' ')
       );  
     })

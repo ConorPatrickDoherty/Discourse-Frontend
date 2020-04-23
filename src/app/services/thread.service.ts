@@ -10,12 +10,11 @@ import { Thread } from '../interfaces/thread';
   providedIn: 'root'
 })
 export class ThreadService {
-  Thread:Observable<Thread>
+  Thread:Observable<Thread> = new Observable<Thread>()
 
   constructor(private functions: AngularFireFunctions, private store: Store<{ NewsFeed: any }>) {
     this.store.select('NewsFeed').subscribe(res => {
-      console.log(res.routerReducer.state.params)
-      if (res.routerReducer.state.params.threadId) {
+      if (res && res.routerReducer && res.routerReducer.state.params.threadId) {
         const body = { threadId: res.routerReducer.state.params.threadId }
         if (res.articleReducer.url != '') body['article'] = res.articleReducer
         if (res.routerReducer.state.params.category) console.log('cat')
