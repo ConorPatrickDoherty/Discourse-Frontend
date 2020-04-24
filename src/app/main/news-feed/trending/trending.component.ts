@@ -57,12 +57,10 @@ export class TrendingComponent implements OnInit {
     }
     if (this.SortField.value) body.sortField = this.SortField.value;
     if (this.SortRange.value) body.sortRange = this.SortRange.value;
-    console.log(body)
 
     this.threads.GetThreads(body).subscribe(x => {
       if (index) this.Threads = this.Threads.concat(x);
       else this.Threads = x;
-      console.log(x)
       if (x.length === 0) this.LoadFinished = true;
       this.ref.tick()
     })

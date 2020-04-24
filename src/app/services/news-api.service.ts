@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { NEWS_API_KEY } from '../../environments/environment'
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { NewsApiResponse } from '../interfaces/news-api-response';
 import { Store, select } from '@ngrx/store';
 import { AngularFireFunctions } from '@angular/fire/functions';

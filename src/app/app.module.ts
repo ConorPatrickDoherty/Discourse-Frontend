@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { firebase } from '../env'
 import { environment } from '../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { StoreModule} from '@ngrx/store';
@@ -15,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { authReducers, metaReducers } from './store';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AppRoutingModule,
@@ -45,7 +47,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       provide: REGION,
       useValue: 'europe-west2'
     },
-    HttpClientModule
+    HttpClientModule,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [
     AppComponent

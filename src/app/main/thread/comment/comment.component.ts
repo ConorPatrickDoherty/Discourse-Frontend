@@ -77,7 +77,6 @@ export class CommentComponent implements OnInit {
 
   Reply() {
     if (!this.Comment.locked && !this.Comment.deleted) {
-      console.log('rep')
       return this.formOpen = !this.formOpen;
     } 
     const message = this.Comment.deleted ? 'has been deleted' : 'is locked' 
@@ -107,7 +106,6 @@ export class CommentComponent implements OnInit {
   Delete() {
     this.comments.DeleteComment(this.Comment.id).subscribe((x) => {
       this.Replies = x;
-      console.log(x)
       this.Comment.deleted = true;
       this.ref.tick()
     });
@@ -116,7 +114,6 @@ export class CommentComponent implements OnInit {
   Lock() {
     this.comments.LockComment(this.Comment.id).subscribe((x) => {
       this.Replies = x;
-      console.log(x)
       this.Comment.locked = true;
       this.ref.tick()
     });

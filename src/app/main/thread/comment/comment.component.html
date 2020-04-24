@@ -91,7 +91,7 @@
 </div>
 
 <ng-template #loadComments>
-    <div class="replies-container" *ngIf="repliesOpen && Comment">
+    <div class="replies-container" *ngIf="repliesOpen">
         <div class="rule"><div class="rule-content"></div></div>
         <div class="reply" *ngFor="let comment of loadingCommentsArray">
             <app-comment></app-comment>
