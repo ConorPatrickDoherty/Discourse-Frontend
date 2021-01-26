@@ -31,6 +31,7 @@ export class ArticleListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ref.detectChanges();
     this.store.select('NewsFeed').pipe(select('routerReducer')).subscribe(res => {
       if (!this.populated && res) {
         this.Page.setValue(+res.state.params.page)

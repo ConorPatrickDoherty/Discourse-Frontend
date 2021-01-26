@@ -1,4 +1,4 @@
-import { Injectable, ApplicationRef } from '@angular/core';
+import { Injectable, ApplicationRef, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -21,7 +21,8 @@ export class AuthenticationService {
     private auth: AngularFireAuth, 
     private store: Store<any>, 
     private router: Router, 
-    private functions: AngularFireFunctions
+    private functions: AngularFireFunctions,
+    private ngZone: NgZone
   ) { }
 
   SignIn = (credentials:Credentials) => {
@@ -33,8 +34,10 @@ export class AuthenticationService {
           type: 'SignIn',
           payload: user
         })
-        this.router.navigate(['newsfeed/ie/General/1'])
-        this.loadingLogin = false;
+        this.ngZone.run(x => {
+          this.router.navigate(['newsfeed/ie/General/1'])
+          this.loadingLogin = false;
+        })
       })
     })
     .catch((error) => {
