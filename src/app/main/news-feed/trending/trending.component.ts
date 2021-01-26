@@ -1,4 +1,4 @@
-import { Component, OnInit, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ApplicationRef, NgZone } from '@angular/core';
 import { Thread } from 'src/app/interfaces/thread';
 import { ThreadService } from 'src/app/services/thread.service';
 import { IconDefinition, faComments, faExchangeAlt  } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +27,8 @@ export class TrendingComponent implements OnInit {
   constructor(
     private ref: ApplicationRef,
     private threads: ThreadService,
-    private router: Router
+    private router: Router,
+    public ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -46,7 +47,9 @@ export class TrendingComponent implements OnInit {
 
   OpenThread(thread:Thread) {
     if (this.Threads.length)
-      this.router.navigate([`thread/${thread.id}`])
+      this.ngZone.run(x => {
+        this.router.navigate([`thread/${thread.id}`])
+      })
   }
 
   LoadThreads(index?: boolean) {
